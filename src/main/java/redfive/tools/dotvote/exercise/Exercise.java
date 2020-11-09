@@ -24,4 +24,5 @@ public class Exercise {
     }
 
     public Exercise(String name) { this.name = name; }
+
 }

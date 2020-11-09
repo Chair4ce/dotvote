@@ -9,5 +9,7 @@ type Query {
 }
 
 type Mutation {
-    createSite(name: String!): Exercise!
+    createExercise(name: String!): Exercise!
+    updateExercise(id: ID!, name: String!): Exercise!
+    deleteExercise(id: ID!): Boolean
 }

@@ -1,6 +1,7 @@
 package redfive.tools.dotvote.exercise;
 
 import graphql.kickstart.tools.GraphQLMutationResolver;
+import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,15 @@ import org.springframework.stereotype.Component;
 public class ExerciseMutationResolver implements GraphQLMutationResolver {
     private final ExerciseService exerciseService;
 
-    public Exercise createExercise(String name) throws javassist.NotFoundException {
+    public Exercise createExercise(String name) throws NotFoundException {
         return exerciseService.createExercise(name);
+    }
+
+    public Exercise updateExercise(Long id, String name) throws NotFoundException {
+        return exerciseService.updateExercise(id, name);
+    }
+
+    public boolean deleteExercise(Long id) {
+        return exerciseService.deleteExercise(id);
     }
 }
