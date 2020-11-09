@@ -1,0 +1,6 @@
+mutation {
+    createExercise(name: "Vision Statement") {
+        id
+        name
+    }
+}

@@ -12,7 +12,7 @@ public class ExerciseQueryResolver implements GraphQLQueryResolver {
 
     private final ExerciseService exerciseService;
 
-    public Exercise getExercise(Long id) { return exerciseService.getExercise(id); }
+    public Exercise exercise(Long id) { return exerciseService.getExercise(id); }
 
     public List<Exercise> exercises() { return exerciseService.getExercises(); }
  }

@@ -28,7 +28,7 @@ public class ExerciseQueryTest extends BaseIntegrationTest {
         Exercise site = new Exercise(1L, "Vision Statement");
         when(exerciseServiceMock.getExercise(any())).thenReturn(site);
 
-        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/get-exercise-by-id.graphql");
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/exercise/get-exercise-by-id.graphql");
 
         assertTrue(response.isOk());
 

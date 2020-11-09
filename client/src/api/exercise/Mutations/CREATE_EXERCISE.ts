@@ -7,3 +7,5 @@ export const CREATE_EXERCISE = gql`
         }
     }
 `;
+
+

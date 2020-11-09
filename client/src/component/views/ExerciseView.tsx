@@ -2,6 +2,7 @@ import React from "react";
 import ExerciseModel from "../../api/exercise/ExerciseModel";
 import {useQuery} from "@apollo/client";
 import {FETCH_EXERCISES} from "../../api/exercise/Queries/FETCH_EXERCISES";
+import ExerciseMenu from "../ExerciseMenu";
 
 export interface ExcerciseData {
     exercises: ExerciseModel[];
@@ -19,13 +20,8 @@ const ExerciseView: React.FC<Props> = (props) => {
         <div data-testid="exercise-view" className={'exercise_view'}>
             {loading ? <p>Loading... </p> :
                 error ? <p>Uh oh! {error.message}</p> :
-                    data && data !== undefined ?
-                        <div>
-                            {data.exercises.map((exercise: any) => (
-                                <div data-testid={"exercise-row"} className={'dataRow'} key={exercise.id}>
-                                    <p>{exercise.name}</p></div>
-                            ))}
-                        </div>
+                    data ?
+                       <ExerciseMenu list={data.exercises} />
                         : null}
         </div>
     )

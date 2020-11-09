@@ -9,7 +9,7 @@ function main {
         acc|acceptance)
             yarnBuild
             jarBuild
-            acceptanceTests ${@}
+#            acceptanceTests ${@}
         ;;
         unit)
             yarnBuild
@@ -19,7 +19,7 @@ function main {
             yarnBuild
             unitTests
             jarBuild
-            acceptanceTests
+#            acceptanceTests
         ;;
     esac
 }

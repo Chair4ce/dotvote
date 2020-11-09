@@ -1,0 +1,3 @@
+mutation deleteExercise {
+    deleteExercise(id: 1)
+}
