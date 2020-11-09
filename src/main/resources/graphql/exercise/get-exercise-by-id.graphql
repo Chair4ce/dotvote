@@ -1,0 +1,6 @@
+query {
+    exercise(id: 1) {
+        id
+        name
+    }
+}
