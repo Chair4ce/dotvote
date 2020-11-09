@@ -9,9 +9,9 @@ pushd ${BASE_DIR}/client
 popd
 
 pushd ${BASE_DIR}
-   mvn -Dflyway.user=${TURBINE_DB_USERNAME} -Dflyway.password= -Dflyway.url=${TURBINE_DB_URL} clean flyway:migrate package -DskipTests
-    rm ${BASE_DIR}/artifacts/turbyne.jar || true
-    cp ${BASE_DIR}/target/turbyne-[0-9\.]*-SNAPSHOT.jar ${BASE_DIR}/artifacts/turbyne.jar
+   mvn -Dflyway.user=${DOTVOTE_DB_USERNAME} -Dflyway.password= -Dflyway.url=${DOTVOTE_DB_URL} clean flyway:migrate package -DskipTests
+    rm ${BASE_DIR}/artifacts/dotvote.jar || true
+    cp ${BASE_DIR}/target/dotvote-[0-9\.]*-SNAPSHOT.jar ${BASE_DIR}/artifacts/dotvote.jar
 popd
 
 #pushd ${BASE_DIR}

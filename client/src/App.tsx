@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './component/App.css';
 import ExerciseView from "./component/views/ExerciseView";
 
 function App() {
