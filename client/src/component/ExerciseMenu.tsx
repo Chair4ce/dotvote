@@ -3,22 +3,36 @@ import ExerciseModel from "../api/exercise/ExerciseModel";
 import {gql, useMutation} from "@apollo/client";
 import {CREATE_EXERCISE} from "../api/exercise/Mutations/CREATE_EXERCISE";
 import {DELETE_EXERCISE} from "../api/exercise/Mutations/DELETE_EXERCISE";
+import {FETCH_EXERCISES} from "../api/exercise/Queries/FETCH_EXERCISES";
+import {ExerciseData} from "../App";
+
 
 interface Props {
     list: ExerciseModel[];
     className?: string;
 }
 
+
+
 const ExerciseMenu: React.FC<Props> = props => {
 
-    const [deleteExercise] = useMutation(DELETE_EXERCISE, {
-            update(cache, {data}) {
-                // const deletedExerciseId = 'Exercise:' + data.id.toString();
-                console.log(data)
-                // cache.evict({id: deletedExerciseId});
+        const [deleteExercise] = useMutation(DELETE_EXERCISE, {
+                update(cache, {data}) {
+                    // const deletedExerciseId = data.deleteExercise.exercise.id;
+                    const deletedExerciseId = data.deleteExercise.id
+                    const allExercises = cache.readQuery<ExerciseData>({
+                        query: FETCH_EXERCISES
+                    });
+
+                    console.log(allExercises?.exercises.filter((t: any) => { return t.id !== deletedExerciseId}))
+
+                    cache.writeQuery({query: FETCH_EXERCISES, data: { exercises: allExercises?.exercises.filter((t: any) => { return t.id !== deletedExerciseId})}})
+                    // cache.evict({id: data.id});
+                },
             },
-        },
-    )
+        )
+
+
 
     function AddExercise() {
         const [exerciseInput, setExerciseInput] = useState('');
@@ -95,7 +109,7 @@ const ExerciseMenu: React.FC<Props> = props => {
                             <div className="card_stack">
                                 <button className="btn-exercise h-50 w-120
                                     rounded bg-grey" onClick={() => {
-                                    deleteExercise({variables: {id: exercise.id}});
+                                    deleteExercise({variables: {id: exercise.id.toString()}});
                                 }}>
                                     <a href="#">
                                         <span/>
