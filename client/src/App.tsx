@@ -1,10 +1,9 @@
 import React from 'react';
-import './component/App.css';
 import ExerciseView from "./component/views/ExerciseView";
 
 function App() {
     return (
-        <div data-testid="app" className="App">
+        <div data-testid="app" id="container" className="app">
             <ExerciseView/>
         </div>
     );

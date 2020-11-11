@@ -12,5 +12,5 @@ type Query {
 type Mutation {
     createExercise(name: String!): Exercise!
     updateExercise(id: Int!, name: String!): Exercise!
-    deleteExercise(id: Int!): Boolean
+    deleteExercise(id: Int!): Exercise!
 }

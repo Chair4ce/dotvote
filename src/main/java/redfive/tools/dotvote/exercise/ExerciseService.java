@@ -38,8 +38,9 @@ public class ExerciseService {
         throw new javassist.NotFoundException("No exercise to update!");
     }
 
-    public boolean deleteExercise(Long id) {
+    public Exercise deleteExercise(Long id) {
+        Exercise exercise = exerciseRepository.findById(id).orElseThrow(ExerciseNotFoundException::new);
         exerciseRepository.deleteById(id);
-        return true;
+        return exercise;
     }
 }

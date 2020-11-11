@@ -1,12 +1,24 @@
 export default class ExerciseModel {
-    private id: number;
-    private name: string;
-    private typename: string
+    private _id: number;
+    private _name: string;
+    private _typename: string
 
     constructor(id: number, name: string, typename: string) {
-        this.id = id;
-        this.name = name;
-        this.typename = typename
+        this._id = id;
+        this._name = name;
+        this._typename = typename
     }
 
+    get id(): number {
+        return this._id;
+    }
+
+
+    get name(): string {
+        return this._name;
+    }
+
+    get typename(): string {
+        return this._typename;
+    }
 }

@@ -6,135 +6,169 @@
 /*noinspection CssInvalidAtRule*/
 @tailwind utilities;
 
-.root {
-    background: #2F2A2A;
+#root {
+    background: rgb(50, 50, 50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
     height: 100%;
+    cursor: grab;
+    overflow: auto;
+}
+
+.exercise_view {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+}
+
+.exercise_menu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 100px);
+
+}
+
+.exercise_menu_items {
+    height: 725px;
+    width: 657px;
 }
 
 .btn-exercise {
     background: transparent;
     border: none;
+    outline: none;
+    height: 30px;
 }
 
-.exercise_menu {
+.exercise_menu_input {
+    position: absolute;
+    top: 20px;
+    margin-left: 30px;
     display: flex;
-    width: 300px;
+    align-items: center;
+    justify-content: center;
 }
 
+.exercise_menu_input_text {
+
+    padding-left: 4px;
+    margin-right: 6px;
+    border: black;
+    outline: none;
+    height: 25px;
+}
 /*Exercise Card stacks*/
 
 
-/** {*/
-/*    padding: 0px;*/
-/*    margin: 0px;*/
-/*}*/
-/*body{*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    min-height: 100vh;*/
-/*    background: #393939;*/
-/*}*/
-/*ul {*/
-/*    position: relative;*/
-/*    display: flex;*/
-/*    transform: rotate(-25deg) skew(25deg);*/
-/*    transform-style: preserve-3d;*/
-/*}*/
-/*ul li {*/
-/*    position: relative;*/
-/*    list-style: none;*/
-/*    width: 60px;*/
-/*    height: 60px;*/
-/*    margin: 0px 20px;*/
-/*}*/
-/*ul li:before{*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    bottom: -11px;*/
-/*    left: 0px;*/
-/*    width: 100%;*/
-/*    height: 11px;*/
-/*    background: #2a2a2a;*/
-/*    transform-origin: top;*/
-/*    transform: skewX(-41deg);*/
-/*}*/
-/*ul li:after{*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: -9px;*/
-/*    width: 9px;*/
-/*    height: 100%;*/
-/*    background: #2a2a2a;*/
-/*    transform-origin: right;*/
-/*    transform: skewY(-49deg);*/
-/*}*/
-/*ul li span{*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    display: flex !important;*/
-/*    background: #2a2a2a;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    color: #fff;*/
-/*    font-size: 12px !important;*/
-/*    transition: 1.5s ease-out;*/
-/*}*/
-/*ul li:hover span {*/
-/*    z-index: 1000;*/
-/*    transition: .3s;*/
-/*    color: #fff;*/
-/*    box-shadow: -1px 1px 1px rgba(0, 0, 0, .5);*/
-/*}*/
-/*ul li:hover span:nth-child(5){*/
-/*    transform: translate(40px, -40px);*/
-/*    opacity: 1;*/
-/*}*/
-/*ul li:hover span:nth-child(4){*/
-/*    transform: translate(30px, -30px);*/
-/*    opacity: .8;*/
-/*}*/
-/*ul li:hover span:nth-child(3){*/
-/*    transform: translate(20px, -20px);*/
-/*    opacity: .6;*/
-/*}*/
-/*ul li:hover span:nth-child(2){*/
-/*    transform: translate(10px, -10px);*/
-/*    opacity: .4;*/
-/*}ul li:hover span:nth-child(1){*/
-/*     transform: translate(0px, 0px);*/
-/*     opacity: .2;*/
-/* }*/
-/*ul li:nth-child(1):hover span{*/
-/*    background: #52E19F !important;*/
-/*}*/
-/*ul li:nth-child(2):hover span{*/
-/*    background: #2C3456 !important;*/
-/*}*/
-/*ul li:nth-child(3):hover span{*/
-/*    background: #EA6E96 !important;*/
-/*}*/
-/*ul li:nth-child(4):hover span{*/
-/*    background: #FCEB00 !important;*/
-/*}*/
-/*ul li:nth-child(5):hover span{*/
-/*    background: #1a9981 !important;*/
-/*}*/
-/*ul li:nth-child(6):hover span{*/
-/*    background: #c8298e !important;*/
-/*}*/
-/*ul li:nth-child(7):hover span{*/
-/*    background: #ca570b !important;*/
-/*}*/
-/*ul li:nth-child(8):hover span{*/
-/*    background: #31cf07 !important;*/
-/*}*/
+* {
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    display: flex;
+    min-height: 100vh;
+    background: #393939;
+}
+
+.card_stacks {
+    width: 520px;
+    display: flex;
+    position: relative;
+    height: 250px;
+    top: 275px;
+    flex-wrap: wrap;
+    transform: rotate(-25deg) skew(25deg);
+    transform-style: preserve-3d;
+}
+.card_stacks .card_stack {
+    position: relative;
+    list-style: none;
+    width: 90px;
+    height: 90px;
+    margin: 20px 20px;
+}
+.card_stacks .card_stack:before{
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0px;
+    width: 100%;
+    height: 11px;
+    background: #2a2a2a;
+    transform-origin: top;
+    transform: skewX(-41deg);
+}
+.card_stacks .card_stack:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -9px;
+    width: 9px;
+    height: 100%;
+    background: #2a2a2a;
+    transform-origin: right;
+    transform: skewY(-49deg);
+}
+.card_stacks .card_stack span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    background: #2a2a2a;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 12px !important;
+    transition: 1s cubic-bezier(0, 0.03, 0, 0.99);
+    content-visibility: auto;
+}
+.card_stacks .card_stack:hover span {
+    z-index: 1000;
+    transition: .2s;
+    color: #fff;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, .5);
+}
+.card_stacks .card_stack:hover span:nth-child(5){
+    transform: translate(40px, -40px);
+    opacity: 1;
+}
+.card_stacks .card_stack:hover span:nth-child(4){
+    transform: translate(30px, -30px);
+    opacity: .8;
+}
+.card_stacks .card_stack:hover span:nth-child(3){
+    transform: translate(20px, -20px);
+    opacity: .6;
+}
+.card_stacks .card_stack:hover span:nth-child(2){
+    transform: translate(10px, -10px);
+    opacity: .4;
+}.card_stacks .card_stack:hover span:nth-child(1){
+     transform: translate(0px, 0px);
+     opacity: .2;
+ }
+.card_stacks div:hover span{
+    background: #F5A629 !important;
+}
+
+
 
 
 /*End of Card Stack CSS*/
+
+/* submit Exercise button */
 
 

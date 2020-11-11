@@ -18,7 +18,7 @@ public class ExerciseMutationResolver implements GraphQLMutationResolver {
         return exerciseService.updateExercise(id, name);
     }
 
-    public boolean deleteExercise(Long id) {
+    public Exercise deleteExercise(Long id) {
         return exerciseService.deleteExercise(id);
     }
 }
