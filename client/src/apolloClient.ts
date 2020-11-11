@@ -6,11 +6,13 @@ const client = new ApolloClient(
         uri: 'http://localhost:8080/api/graphql',
         cache: new InMemoryCache({
             typePolicies: {
-                exercises: {
+                Query: {
                     fields: {
+                        exercises: {
                             merge(existing, incoming) {
                                 return incoming;
                             },
+                        },
                     },
                 },
             }

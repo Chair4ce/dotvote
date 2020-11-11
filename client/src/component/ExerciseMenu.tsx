@@ -3,36 +3,23 @@ import ExerciseModel from "../api/exercise/ExerciseModel";
 import {gql, useMutation} from "@apollo/client";
 import {CREATE_EXERCISE} from "../api/exercise/Mutations/CREATE_EXERCISE";
 import {DELETE_EXERCISE} from "../api/exercise/Mutations/DELETE_EXERCISE";
-import {FETCH_EXERCISES} from "../api/exercise/Queries/FETCH_EXERCISES";
-import {ExerciseData} from "../App";
-
-
+import trashBin from "../icons/16px/Bin.svg";
+import moreDots from "../icons/16px/3dots.svg";
 interface Props {
     list: ExerciseModel[];
     className?: string;
 }
 
-
-
 const ExerciseMenu: React.FC<Props> = props => {
+
 
         const [deleteExercise] = useMutation(DELETE_EXERCISE, {
                 update(cache, {data}) {
-                    // const deletedExerciseId = data.deleteExercise.exercise.id;
-                    const deletedExerciseId = data.deleteExercise.id
-                    const allExercises = cache.readQuery<ExerciseData>({
-                        query: FETCH_EXERCISES
-                    });
-
-                    console.log(allExercises?.exercises.filter((t: any) => { return t.id !== deletedExerciseId}))
-
-                    cache.writeQuery({query: FETCH_EXERCISES, data: { exercises: allExercises?.exercises.filter((t: any) => { return t.id !== deletedExerciseId})}})
-                    // cache.evict({id: data.id});
+                    const deletedExerciseId = 'Exercise:' + data.deleteExercise.id.toString();
+                     cache.evict({id: deletedExerciseId});
                 },
             },
         )
-
-
 
     function AddExercise() {
         const [exerciseInput, setExerciseInput] = useState('');
@@ -108,9 +95,7 @@ const ExerciseMenu: React.FC<Props> = props => {
                         <div data-testid={"exercise-menu-row"} className={'exercise_menu_row'} key={exercise.id}>
                             <div className="card_stack">
                                 <button className="btn-exercise h-50 w-120
-                                    rounded bg-grey" onClick={() => {
-                                    deleteExercise({variables: {id: exercise.id.toString()}});
-                                }}>
+                                    rounded bg-grey"   >
                                     <a href="#">
                                         <span/>
                                         <span/>
@@ -122,6 +107,14 @@ const ExerciseMenu: React.FC<Props> = props => {
                                         </p>
                                     </span>
                                     </a>
+                                </button>
+                            </div>
+                            <div className="exercise_menu_action_area" >
+                                <img className="exercise_menu_action_area_dots"  src={moreDots} alt={"actions"}/>
+                                <button className="exercise_menu_action_btn_delete" onClick={() => {
+                                    deleteExercise({variables: {id: exercise.id.toString()}});
+                                }}>
+                                <img src={trashBin} alt={"delete"}/>
                                 </button>
                             </div>
                         </div>

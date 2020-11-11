@@ -22849,9 +22849,13 @@ video {
 .exercise_menu_input_text {
   padding-left: 4px;
   margin-right: 6px;
-  border: black;
   outline: none;
   height: 25px;
+}
+
+.exercise_menu_delete {
+  background-color: transparent;
+  border: none;
 }
 
 /*Exercise Card stacks*/
@@ -22876,6 +22880,55 @@ body{
   flex-wrap: wrap;
   transform: rotate(-25deg) skew(25deg);
   transform-style: preserve-3d;
+  /*animation: pulse-in .6s ease-in;*/
+}
+
+.exercise_menu_row {
+  display: block;
+}
+
+.exercise_menu_action_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 35px;
+  z-index: 9000;
+  background: transparent;
+  cursor: pointer;
+}
+
+.exercise_menu_action_area_dots {
+  transition: .2s cubic-bezier(0, 0.03, 0, 0.99);
+  opacity: 1;
+  position: absolute;
+}
+
+.exercise_menu_action_btn_delete {
+  width: 30px;
+  height: 30px;
+  border: none;
+  z-index: 200;
+  background: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: .2s cubic-bezier(0, 0.03, 0, 0.99);
+}
+
+button:focus {
+  outline:0;
+}
+
+.exercise_menu_action_area:hover > .exercise_menu_action_btn_delete {
+  opacity: 1;
+  /*transition: 1s cubic-bezier(0, 0.03, 0, 0.99);*/
+  transition: .2s;
+}
+
+.exercise_menu_action_area:hover > .exercise_menu_action_area_dots {
+  opacity: 0;
+  /*transition: 1s cubic-bezier(0, 0.03, 0, 0.99);*/
+  transition: .2s;
 }
 
 .card_stacks .card_stack {
@@ -22884,6 +22937,8 @@ body{
   width: 90px;
   height: 90px;
   margin: 20px 20px;
+  -webkit-animation: pulse-in .4s ease-in;
+          animation: pulse-in .4s ease-in;
 }
 
 .card_stacks .card_stack:before{
@@ -22923,7 +22978,6 @@ body{
   color: #fff;
   font-size: 12px !important;
   transition: 1s cubic-bezier(0, 0.03, 0, 0.99);
-  content-visibility: auto;
 }
 
 .card_stacks .card_stack:hover span {
@@ -22960,6 +23014,248 @@ body{
 
 .card_stacks div:hover span{
   background: #F5A629 !important;
+}
+
+.card_stacks div span:nth-child(5){
+  -webkit-animation: pulse-in-4 .4s ease-in;
+          animation: pulse-in-4 .4s ease-in;
+  opacity: 1;
+}
+
+.card_stacks div span:nth-child(4){
+  -webkit-animation: pulse-in-3 .4s ease-in;
+          animation: pulse-in-3 .4s ease-in;
+  opacity: .8;
+}
+
+.card_stacks div span:nth-child(3){
+  -webkit-animation: pulse-in-2 .4s ease-in;
+          animation: pulse-in-2 .4s ease-in;
+  opacity: .6;
+}
+
+.card_stacks div span:nth-child(2){
+  -webkit-animation: pulse-in-1 .4s ease-in;
+          animation: pulse-in-1 .4s ease-in;
+  opacity: .4;
+}
+
+.card_stacks div span:nth-child(1){
+  -webkit-animation: pulse-in-0 .4s ease-in;
+          animation: pulse-in-0 .4s ease-in;
+  opacity: .2;
+}
+
+@-webkit-keyframes ease-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ease-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes pulse-in-0 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-in-0 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes pulse-in-1 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(10px, -10px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-in-1 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(10px, -10px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes pulse-in-2 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(20px, -20px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-in-2 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(20px, -20px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes pulse-in-3 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(30px, -30px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-in-3 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(30px, -30px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes pulse-in-4 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(40px, -40px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-in-4 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(40px, -40px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes pulse-in-5 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(40px, -40px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-in-5 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(40px, -40px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
 }
 
 /*End of Card Stack CSS*/
