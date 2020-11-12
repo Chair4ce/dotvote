@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ExerciseView from "./component/views/ExerciseView";
 import {useQuery} from "@apollo/client";
 import {FETCH_EXERCISES} from "./api/exercise/Queries/FETCH_EXERCISES";
@@ -11,6 +11,7 @@ export interface ExerciseData {
 function App() {
 
     const {loading, error, data} = useQuery<ExerciseData>(FETCH_EXERCISES);
+
 
     return (
         <div data-testid="app" id="container" className="app">

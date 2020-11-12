@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: Turbine
+  - name: dotvote
     buildpacks:
       - https://github.com/cloudfoundry/java-buildpack.git
     memory: 1GB

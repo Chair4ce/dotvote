@@ -331,11 +331,96 @@ button:focus {outline:0;}
     }
 }
 
-
-
-
 /*End of Card Stack CSS*/
 
 /* submit Exercise button */
 
+
+.exercise_current {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 20px;
+    align-items: center;
+    animation: pulse-in .4s;
+    transition: ease-in .9s;
+}
+
+.current_exercise_back_btn {
+    height: 35px;
+    width: 40px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    margin: 10px;
+}
+
+/* Back button */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper {
+    position: fixed;
+    top: 20px;
+    left: 100px;
+}
+
+.link_wrapper {
+    position: relative;
+}
+
+.back_btn_txt {
+    display: block;
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #333;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid #333;
+    transition: all .35s;
+    cursor: pointer;
+}
+
+.icon {
+    width: 35px;
+    height: 35px;
+    border: 3px solid transparent;
+    position: absolute;
+    transform: rotate(-135deg);
+    top: 0;
+    z-index: -1;
+    transition: all .35s;
+    left: 0;
+}
+
+.icon svg {
+    width: 30px;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    transform: rotate(-45deg);
+    fill: #F5A629;
+    transition: all .35s;
+}
+
+.back_btn_txt:hover {
+    width: 125px;
+    border: 3px solid #F5A629;
+    background: transparent;
+    color: #F5A629;
+}
+
+.back_btn_txt:hover + .icon {
+    border: 3px solid #F5A629;
+    left: -25%;
+}
+
+/* current Back Button*/
 

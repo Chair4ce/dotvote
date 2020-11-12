@@ -3,10 +3,12 @@ import ExerciseModel from "../api/exercise/ExerciseModel";
 import {gql, useMutation} from "@apollo/client";
 import {CREATE_EXERCISE} from "../api/exercise/Mutations/CREATE_EXERCISE";
 import {DELETE_EXERCISE} from "../api/exercise/Mutations/DELETE_EXERCISE";
-import trashBin from "../icons/16px/Bin.svg";
-import moreDots from "../icons/16px/3dots.svg";
+import {ReactComponent as MoreDots} from "../icons/16px/3dots.svg";
+import {ReactComponent as Trash} from "../icons/16px/Bin.svg";
+
 interface Props {
     list: ExerciseModel[];
+    callback: (exercise: ExerciseModel) => void;
     className?: string;
 }
 
@@ -84,6 +86,10 @@ const ExerciseMenu: React.FC<Props> = props => {
         );
     }
 
+    function handleClick(exercise: ExerciseModel){
+            props.callback(exercise);
+    }
+
     return (
         <div data-testid="exercise-menu" className={'exercise_menu'}>
             <div className={'exercise_menu_input'}>
@@ -95,7 +101,7 @@ const ExerciseMenu: React.FC<Props> = props => {
                         <div data-testid={"exercise-menu-row"} className={'exercise_menu_row'} key={exercise.id}>
                             <div className="card_stack">
                                 <button className="btn-exercise h-50 w-120
-                                    rounded bg-grey"   >
+                                    rounded bg-grey" onClick={() => handleClick(exercise)}  >
                                     <a href="#">
                                         <span/>
                                         <span/>
@@ -110,11 +116,11 @@ const ExerciseMenu: React.FC<Props> = props => {
                                 </button>
                             </div>
                             <div className="exercise_menu_action_area" >
-                                <img className="exercise_menu_action_area_dots"  src={moreDots} alt={"actions"}/>
+                                <MoreDots className={"exercise_menu_action_area_dots"}/>
                                 <button className="exercise_menu_action_btn_delete" onClick={() => {
                                     deleteExercise({variables: {id: exercise.id.toString()}});
                                 }}>
-                                <img src={trashBin} alt={"delete"}/>
+                                <Trash/>
                                 </button>
                             </div>
                         </div>
