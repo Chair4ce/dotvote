@@ -1,5 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import ExerciseModel from "../../api/exercise/ExerciseModel";
+import {gql, useMutation, useQuery} from "@apollo/client";
+import {CREATE_EXERCISE} from "../../api/exercise/Mutations/CREATE_EXERCISE";
+import {FETCH_EXERCISES} from "../../api/exercise/Queries/FETCH_EXERCISES";
+import {ExerciseData} from "../../App";
+import {FETCH_IDEAS} from "../../api/idea/Queries/FETCH_IDEAs";
+import {CREATE_IDEA} from "../../api/idea/Mutations/CREATE_IDEA";
+import IdeaModel from "../../api/idea/IdeaModel";
+
+
+export interface IdeaData {
+    ideas: IdeaModel[];
+}
 
 export interface Props {
     exercise: ExerciseModel;
@@ -10,7 +22,75 @@ export interface Props {
 
 const CurrentExercise: React.FC<Props> = (props) => {
 
+    const {loading, error, data} = useQuery<IdeaData>(FETCH_IDEAS, {variables: {exerciseId: props.exercise.id}});
 
+    function AddIdea() {
+        const [ideaInput, setIdeaInput] = useState('');
+
+
+        const [createIdea, {error: mutationError}] = useMutation(CREATE_IDEA, {
+            update(cache, {data: {createIdea}}) {
+                cache.modify({
+                    fields: {
+                        ideas(existingIdeas = []) {
+                            const newIdeaRef = cache.writeFragment(
+                                {
+                                    data: createIdea,
+                                    fragment: gql`
+                                        fragment NewIdea on Idea {
+                                            name
+                                            exerciseId
+                                        }
+                                    `,
+                                },
+                            );
+                            return [...existingIdeas, newIdeaRef];
+                        },
+                    },
+                },);
+            },
+        });
+
+        const handleAddIdea = () => {
+            console.log(ideaInput);
+            console.log(props.exercise.id);
+            if (ideaInput !== '') {
+                createIdea({variables: {text: ideaInput, exerciseId: props.exercise.id }})
+                setIdeaInput('');
+            }
+        }
+
+        return (
+            <>
+                <div>
+
+                    <input
+                        className="exercise_menu_input_text"
+                        value={ideaInput}
+                        onChange={(event) => setIdeaInput(event.target.value)}
+                        onKeyPress={event => {
+                            if (event.key === 'Enter') {
+                                handleAddIdea();
+                            }
+                        }}
+                        placeholder={'Title'}
+                    />
+
+                </div>
+                <div className="flex justify-center items-center vh-100">
+                    <button
+                        className="create_exercise_btn relative"
+                        disabled={ideaInput === ''}
+                        onClick={handleAddIdea}
+                    >
+                        <div className="element">
+                            <p>Create New Idea</p>
+                        </div>
+                    </button>
+                </div>
+            </>
+        );
+    }
 
     return (
         <div data-testid="exercise-current" className={'exercise_current'}>
@@ -28,6 +108,16 @@ const CurrentExercise: React.FC<Props> = (props) => {
 
             </div>
             <h1>{props.exercise.name}</h1>
+            <div className={'exercise_menu_input'}>
+                {AddIdea()}
+            </div>
+            <div className="idea_container">
+                {data ? data.ideas.map((m : IdeaModel) => {
+                    return <div className={"idea_row"}>
+                        {m.name}
+                    </div>
+                }) : null}
+            </div>
         </div>
     )
 }

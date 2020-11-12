@@ -3,13 +3,28 @@ type Exercise {
     name: String!
 }
 
+type Idea {
+    id: ID!
+    name: String!
+    exerciseId: Int!
+}
+
 type Query {
     exercise(id: ID!): Exercise
     exercises: [Exercise]
+
+    idea(id: ID!, exerciseId: Int!): Idea
+    ideas(exerciseId: Int!): [Idea]
 }
 
 type Mutation {
     createExercise(name: String!): Exercise!
     updateExercise(id: Int!, name: String!): Exercise!
     deleteExercise(id: Int!): Exercise!
+
+    createIdea(name: String!, exerciseId: Int!): Idea!
+    updateIdea(id: Int!, name: String!, exerciseId: Int): Idea!
+    deleteIdea(id: Int!, exerciseId: Int!): Idea!
 }
+
+
