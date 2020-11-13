@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './button.scss';
+import './component/Button/CreateButton.scss';
 import './tailwind.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

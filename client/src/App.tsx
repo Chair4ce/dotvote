@@ -15,7 +15,7 @@ function App() {
 
     return (
         <div data-testid="app" id="container" className="app">
-            <ExerciseView loading={loading} exercises={data?.exercises} error={error}/>
+            {data ? <ExerciseView loading={loading} exercises={data.exercises} error={error}/> : null}
         </div>
     );
 }

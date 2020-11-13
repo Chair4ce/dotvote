@@ -1,29 +1,35 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ExerciseMenu from "../ExerciseMenu";
 import ExerciseModel from "../../api/exercise/ExerciseModel";
 import CurrentExercise from "./CurrentExercise";
+import BackButton from "../Button/BackButton";
 
 export interface Props {
     loading: boolean;
     error: any;
-    exercises?: ExerciseModel[];
+    exercises: ExerciseModel[];
     className?: String;
 }
 
 const ExerciseView: React.FC<Props> = (props) => {
 
-    const [selectedExercise, setSelectedExercise] = useState<ExerciseModel  | undefined>(undefined);
+    const [selectedExercise, setSelectedExercise] = useState<ExerciseModel  | null>(null);
+
 
     function handleCallback(exercise: ExerciseModel) {
         setSelectedExercise(exercise);
     }
 
     function handleReset() {
-        setSelectedExercise(undefined)
+        setSelectedExercise(null)
     }
 
     return (
         <div data-testid="exercise-view" className={'exercise_view'}>
+            <header className="app_header">
+                {selectedExercise ? <BackButton callback={handleReset}/> : null}
+                {selectedExercise ? <h1>{selectedExercise.name}</h1> : <h1>The Dot Voter</h1>}
+            </header>
             {selectedExercise ? <CurrentExercise exercise={selectedExercise} callback={handleReset} /> : null}
             {props.loading ? <p>Loading... </p> :
                 props.error ? <p>Uh oh! {props.error}</p> :

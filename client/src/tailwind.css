@@ -7,42 +7,81 @@
 @tailwind utilities;
 
 #root {
-    background: rgb(50, 50, 50);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #323232;
     width: 100%;
 }
 
 .app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
+
     height: 100%;
-    cursor: grab;
-    overflow: auto;
+    width: 100%;
 }
 
 .exercise_view {
+display: block;
+}
+
+.app_header {
     display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100%;
+    background: #323232;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
 }
 
 .exercise_menu {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: calc(100vh - 100px);
+    display: block;
+    background: #323232;
+    height: 100%;
+    width: 100%;
+}
 
+.exercise_menu_sub_header {
+    align-items: center;
+    background: #323232;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .exercise_menu_items {
-    height: 725px;
-    width: 657px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    top: 140px;
+    /*cursor: grab;*/
+    /*overflow: auto;*/
 }
+
+.create_exercise_form {
+    background: #323232;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 74px;
+    z-index: 1000;
+}
+.card_stacks {
+    display: flex;
+    flex-wrap: wrap;
+    transform: rotate(-25deg) skew(25deg);
+    transform-style: preserve-3d;
+    width: 47vw;
+    height: 39vh;
+}
+
+
+
+.form_submit {
+    width: 220px;
+}
+
 
 .btn-exercise {
     background: transparent;
@@ -52,13 +91,17 @@
 }
 
 .exercise_menu_input {
-    position: absolute;
-    top: 50px;
-    margin-left: 30px;
+    background: #323232;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    width: 395px;
+    top: 80px;
+    z-index: 1000;
 }
+
+
 
 .exercise_menu_input_text {
 
@@ -84,21 +127,10 @@
 body{
     display: flex;
     min-height: 100vh;
-    background: #393939;
+    background: #323232;
 }
 
-.card_stacks {
-    width: 520px;
-    display: flex;
-    position: relative;
-    height: 250px;
-    top: 275px;
-    flex-wrap: wrap;
-    transform: rotate(-25deg) skew(25deg);
-    transform-style: preserve-3d;
-    /*animation: pulse-in .6s ease-in;*/
 
-}
 
 .exercise_menu_row {
     display: block;
@@ -242,7 +274,7 @@ button:focus {outline:0;}
 }
 
 
-@keyframes ease-in {
+@keyframes fade {
     0% {
         opacity: 0;
     }
@@ -335,16 +367,23 @@ button:focus {outline:0;}
 
 /* submit Exercise button */
 
+@-webkit-keyframes fadeinout {
+    100% { opacity: 1; }
+}
 
+@keyframes fadeinout {
+    100% { opacity: 1; }
+}
 .exercise_current {
-    width: 100vw;
     display: flex;
-    justify-content: center;
     position: relative;
-    top: 20px;
+    width: 100vw;
+    height: 100%;
     align-items: center;
-    animation: pulse-in .4s;
-    transition: ease-in .9s;
+    flex-direction: column;
+    -webkit-animation: fadeinout 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    animation: fadeinout 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    opacity: 0;
 }
 
 .current_exercise_back_btn {
@@ -357,70 +396,70 @@ button:focus {outline:0;}
 }
 
 /* Back button */
-body {
-    font-family: 'Lato', sans-serif;
-}
+/*body {*/
+/*    font-family: 'Lato', sans-serif;*/
+/*}*/
 
-.wrapper {
-    position: fixed;
-    top: 20px;
-    left: 100px;
-}
+/*.wrapper {*/
+/*    position: fixed;*/
+/*    top: 20px;*/
+/*    left: 58px;*/
+/*}*/
 
-.link_wrapper {
-    position: relative;
-}
+/*.link_wrapper {*/
+/*    position: relative;*/
+/*}*/
 
-.back_btn_txt {
-    display: block;
-    width: 100px;
-    height: 35px;
-    line-height: 35px;
-    font-weight: bold;
-    text-decoration: none;
-    background: #333;
-    text-align: center;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 3px solid #333;
-    transition: all .35s;
-    cursor: pointer;
-}
+/*.back_btn_txt {*/
+/*    display: block;*/
+/*    width: 100px;*/
+/*    height: 35px;*/
+/*    line-height: 35px;*/
+/*    font-weight: bold;*/
+/*    text-decoration: none;*/
+/*    background: #333;*/
+/*    text-align: center;*/
+/*    color: #fff;*/
+/*    text-transform: uppercase;*/
+/*    letter-spacing: 1px;*/
+/*    border: 3px solid #333;*/
+/*    transition: all .35s;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.icon {
-    width: 35px;
-    height: 35px;
-    border: 3px solid transparent;
-    position: absolute;
-    transform: rotate(-135deg);
-    top: 0;
-    z-index: -1;
-    transition: all .35s;
-    left: 0;
-}
+/*.icon {*/
+/*    width: 35px;*/
+/*    height: 35px;*/
+/*    border: 3px solid transparent;*/
+/*    position: absolute;*/
+/*    transform: rotate(-135deg);*/
+/*    top: 0;*/
+/*    z-index: -1;*/
+/*    transition: all .35s;*/
+/*    left: 0;*/
+/*}*/
 
-.icon svg {
-    width: 30px;
-    position: absolute;
-    top: calc(50% - 15px);
-    left: calc(50% - 15px);
-    transform: rotate(-45deg);
-    fill: #F5A629;
-    transition: all .35s;
-}
+/*.icon svg {*/
+/*    width: 30px;*/
+/*    position: absolute;*/
+/*    top: calc(50% - 15px);*/
+/*    left: calc(50% - 15px);*/
+/*    transform: rotate(-45deg);*/
+/*    fill: #F5A629;*/
+/*    transition: all .35s;*/
+/*}*/
 
-.back_btn_txt:hover {
-    width: 125px;
-    border: 3px solid #F5A629;
-    background: transparent;
-    color: #F5A629;
-}
+/*.back_btn_txt:hover {*/
+/*    width: 125px;*/
+/*    border: 3px solid #F5A629;*/
+/*    background: transparent;*/
+/*    color: #F5A629;*/
+/*}*/
 
-.back_btn_txt:hover + .icon {
-    border: 3px solid #F5A629;
-    left: -25%;
-}
+/*.back_btn_txt:hover + .icon {*/
+/*    border: 3px solid #F5A629;*/
+/*    left: -25%;*/
+/*}*/
 
 
 .idea_container {

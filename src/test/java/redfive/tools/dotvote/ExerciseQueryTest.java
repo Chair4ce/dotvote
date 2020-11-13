@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import redfive.tools.dotvote.exercise.Exercise;
 import redfive.tools.dotvote.exercise.ExerciseService;
+import redfive.tools.dotvote.idea.IdeaService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,6 +23,9 @@ public class ExerciseQueryTest extends BaseIntegrationTest {
 
     @MockBean
     private ExerciseService exerciseServiceMock;
+
+    @MockBean
+    private IdeaService ideaServiceMock;
 
     @Test
     public void getExerciseById() throws Exception {
