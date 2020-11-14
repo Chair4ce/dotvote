@@ -12,7 +12,6 @@ export interface IdeaData {
 
 export interface Props {
     exercise: ExerciseModel;
-    callback: () => void;
     className?: String;
 }
 
@@ -59,7 +58,7 @@ const CurrentExercise: React.FC<Props> = (props) => {
         }
 
         return (
-            <div className="create_exercise_form">
+            <div data-testid="current-exercise" className="create_exercise_form">
                 <div className={"form_input"}>
                     <input
                         className="exercise_menu_input_text"

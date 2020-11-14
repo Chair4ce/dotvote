@@ -7,9 +7,9 @@ body {
     position: absolute;
     justify-content: space-around;
     height: 300px;
-    width: 100vw;
+    width: 65vw;
     top: 163px;
-    left: calc(26% - 300px);
+    left: calc(24% - 141px);
     display: flex;
 }
 

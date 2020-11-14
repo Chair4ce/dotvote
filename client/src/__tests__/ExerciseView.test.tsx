@@ -8,7 +8,7 @@ function renderExerciseView(props: Partial<Props> = {}) {
 
     return render(
         <ApolloProvider client={client}>
-            <ExerciseView {...props} loading={false} error={""} exercises={[]} />
+            <ExerciseView {...props} loading={false} error={""} exercises={[]}/>
         </ApolloProvider>
     );
 }

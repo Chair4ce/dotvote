@@ -1,15 +1,15 @@
 import React from "react";
 import './NavBtnBack.css';
 
-interface Props {
-    callback: () => void;
+export interface Props {
+    onClick: () => void;
 }
 
 const BackButton: React.FC<Props> = props => {
     return (
         <div className="wrapper">
             <div className="link_wrapper">
-                <a className={"back_btn_txt"} onClick={props.callback}>Back</a>
+                <a className={"back_btn_txt"} onClick={props.onClick}>Back</a>
                 <div className="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
                         <path

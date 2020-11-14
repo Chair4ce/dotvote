@@ -27,10 +27,10 @@ const ExerciseView: React.FC<Props> = (props) => {
     return (
         <div data-testid="exercise-view" className={'exercise_view'}>
             <header className="app_header">
-                {selectedExercise ? <BackButton callback={handleReset}/> : null}
+                {selectedExercise ? <BackButton onClick={handleReset}/> : null}
                 {selectedExercise ? <h1>{selectedExercise.name}</h1> : <h1>The Dot Voter</h1>}
             </header>
-            {selectedExercise ? <CurrentExercise exercise={selectedExercise} callback={handleReset} /> : null}
+            {selectedExercise ? <CurrentExercise exercise={selectedExercise}/> : null}
             {props.loading ? <p>Loading... </p> :
                 props.error ? <p>Uh oh! {props.error}</p> :
                     props.exercises && !selectedExercise ?
