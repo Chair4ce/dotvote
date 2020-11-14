@@ -6281,6 +6281,11 @@ graphql@^15.3.0:
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.4.0.tgz#e459dea1150da5a106486ba7276518b5295a4347"
   integrity sha512-EB3zgGchcabbsU9cFe1j+yxdzKQKAbGUWRb13DsrsMN1yyfmmIq+2+L5MqVWcDCE4V89R5AyUOi7sMOGxdsYtA==
 
+gridstack@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/gridstack/-/gridstack-2.2.0.tgz#56e14dedc838d9aa87289e801bec7603b552ba1c"
+  integrity sha512-qJezPsH445ct+yNjBSVTvMP/SpC/Pa8V2H1b8SPuB0uVOKV+QFOFOThMRToSGbPwH7NCc3A7WOjTzRx+jnUFaA==
+
 growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"

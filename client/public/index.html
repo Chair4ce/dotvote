@@ -29,51 +29,52 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const ele = document.getElementById('container');
-        ele.style.cursor = 'grab';
 
-        let pos = { top: 0, left: 0, x: 0, y: 0 };
+<!--    <script>-->
+<!--      document.addEventListener('DOMContentLoaded', function() {-->
+<!--        const ele = document.getElementById('container');-->
+<!--        ele.style.cursor = 'grab';-->
 
-        const mouseDownHandler = function(e) {
-          ele.style.cursor = 'grabbing';
-          ele.style.userSelect = 'none';
+<!--        let pos = { top: 0, left: 0, x: 0, y: 0 };-->
 
-          pos = {
-            left: ele.scrollLeft,
-            top: ele.scrollTop,
-            // Get the current mouse position
-            x: e.clientX,
-            y: e.clientY,
-          };
+<!--        const mouseDownHandler = function(e) {-->
+<!--          ele.style.cursor = 'grabbing';-->
+<!--          ele.style.userSelect = 'none';-->
 
-          document.addEventListener('mousemove', mouseMoveHandler);
-          document.addEventListener('mouseup', mouseUpHandler);
-        };
+<!--          pos = {-->
+<!--            left: ele.scrollLeft,-->
+<!--            top: ele.scrollTop,-->
+<!--            // Get the current mouse position-->
+<!--            x: e.clientX,-->
+<!--            y: e.clientY,-->
+<!--          };-->
 
-        const mouseMoveHandler = function(e) {
-          // How far the mouse has been moved
-          const dx = e.clientX - pos.x;
-          const dy = e.clientY - pos.y;
+<!--          document.addEventListener('mousemove', mouseMoveHandler);-->
+<!--          document.addEventListener('mouseup', mouseUpHandler);-->
+<!--        };-->
 
-          // Scroll the element
-          ele.scrollTop = pos.top - dy;
-          ele.scrollLeft = pos.left - dx;
-        };
+<!--        const mouseMoveHandler = function(e) {-->
+<!--          // How far the mouse has been moved-->
+<!--          const dx = e.clientX - pos.x;-->
+<!--          const dy = e.clientY - pos.y;-->
 
-        const mouseUpHandler = function() {
-          ele.style.cursor = 'grab';
-          ele.style.removeProperty('user-select');
+<!--          // Scroll the element-->
+<!--          ele.scrollTop = pos.top - dy;-->
+<!--          ele.scrollLeft = pos.left - dx;-->
+<!--        };-->
 
-          document.removeEventListener('mousemove', mouseMoveHandler);
-          document.removeEventListener('mouseup', mouseUpHandler);
-        };
+<!--        const mouseUpHandler = function() {-->
+<!--          ele.style.cursor = 'grab';-->
+<!--          ele.style.removeProperty('user-select');-->
 
-        // Attach the handler
-        ele.addEventListener('mousedown', mouseDownHandler);
-      });
-    </script>
+<!--          document.removeEventListener('mousemove', mouseMoveHandler);-->
+<!--          document.removeEventListener('mouseup', mouseUpHandler);-->
+<!--        };-->
+
+<!--        // Attach the handler-->
+<!--        ele.addEventListener('mousedown', mouseDownHandler);-->
+<!--      });-->
+<!--    </script>-->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

@@ -93,7 +93,9 @@ const CurrentExercise: React.FC<Props> = (props) => {
             <div className="exercise_menu_sub_header">
                 {AddIdea()}
             </div>
+
             <div className="container">
+
                 {data ? data.ideas.map((m : IdeaModel) => {
                     return <div key={m.id} className="card">
                         <h3 className="title">{m.name}</h3>

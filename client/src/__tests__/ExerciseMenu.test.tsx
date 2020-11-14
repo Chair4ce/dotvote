@@ -1,5 +1,5 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import {ApolloProvider} from "@apollo/client";
 import client from "../apolloClient";
 import ExerciseModel from "../api/exercise/ExerciseModel";
@@ -24,3 +24,5 @@ test('renders a list of exercises', async () => {
     expect(screen.getByText('Vision')).toBeInTheDocument();
     expect(screen.getByText('Affinity Map')).toBeInTheDocument();
 });
+
+
