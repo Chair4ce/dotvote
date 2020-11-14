@@ -71,6 +71,7 @@ display: block;
 .card_stacks {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     /*transform: rotate(-25deg) skew(25deg);*/
     /*transform-style: preserve-3d;*/
     width: 100%;
@@ -211,22 +212,22 @@ button:focus {outline:0;}
     box-shadow: -1px 1px 1px rgba(0, 0, 0, .5);
 }
 .card_stacks .card_stack:hover span:nth-child(5){
-    transform: translate(25px, -20px);
+    transform: translate(10px, -10px);
     opacity: 1;
 }
 .card_stacks .card_stack:hover span:nth-child(4){
-    transform: translate(20px, -15px);
+    transform: translate(5px, -5px);
     opacity: .8;
 }
 .card_stacks .card_stack:hover span:nth-child(3){
-    transform: translate(15px, -10px);
+    transform: translate(0px, 0px);
     opacity: .6;
 }
 .card_stacks .card_stack:hover span:nth-child(2){
-    transform: translate(10px, -5px);
+    transform: translate(-5px, 5px);
     opacity: .4;
 }.card_stacks .card_stack:hover span:nth-child(1){
-     transform: translate(5px, 0px);
+     transform: translate(-10px, 10px);
      opacity: .2;
  }
 .card_stacks div:hover span{

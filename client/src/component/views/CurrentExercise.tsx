@@ -5,6 +5,8 @@ import {FETCH_IDEAS} from "../../api/idea/Queries/FETCH_IDEAs";
 import {CREATE_IDEA} from "../../api/idea/Mutations/CREATE_IDEA";
 import IdeaModel from "../../api/idea/IdeaModel";
 import '../cards/Cards.css';
+import CreateButton from "../Button/CreateButton";
+import IdeaCard from "../cards/IdeaCard";
 
 export interface IdeaData {
     ideas: IdeaModel[];
@@ -49,8 +51,8 @@ const CurrentExercise: React.FC<Props> = (props) => {
 
         const handleAddIdea = () => {
             if (ideaInput !== '') {
-                if(props.exercise) {
-                createIdea({variables: {text: ideaInput, exerciseId: props.exercise.id }})
+                if (props.exercise) {
+                    createIdea({variables: {text: ideaInput, exerciseId: props.exercise.id}})
                 }
 
                 setIdeaInput('');
@@ -73,19 +75,14 @@ const CurrentExercise: React.FC<Props> = (props) => {
                     />
 
                 </div>
-                <div className="form_submit flex justify-center items-center vh-100">
-                    <button
-                        className="create_exercise_btn relative"
-                        disabled={ideaInput === ''}
-                        onClick={handleAddIdea}
-                    >
-                        <div className="element">
-                            <p>Create New Idea</p>
-                        </div>
-                    </button>
-                </div>
+                <CreateButton buttonText={"Add Idea"} input={ideaInput} onClick={handleAddIdea}/>
+
             </div>
         );
+    }
+
+    function handleOnClickCallback() {
+        console.log("click!!!")
     }
 
     return (
@@ -95,20 +92,8 @@ const CurrentExercise: React.FC<Props> = (props) => {
             </div>
 
             <div className="container">
-
-                {data ? data.ideas.map((m : IdeaModel) => {
-                    return <div key={m.id} className="card">
-                        <h3 className="title">{m.name}</h3>
-                        <div className="bar">
-                            <div className="emptybar"/>
-                            <div className="filledbar"/>
-                        </div>
-                        <div className="circle">
-                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                <circle className="stroke" cx="32" cy="60" r="30"/>
-                            </svg>
-                        </div>
-                    </div>
+                {data ? data.ideas.map((m: IdeaModel) => {
+                    return <IdeaCard key={m.id} idea={m} onClick={handleOnClickCallback}/>
                 }) : null}
             </div>
         </div>

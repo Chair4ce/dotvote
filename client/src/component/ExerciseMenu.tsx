@@ -6,6 +6,7 @@ import {DELETE_EXERCISE} from "../api/exercise/Mutations/DELETE_EXERCISE";
 import {ReactComponent as MoreDots} from "../icons/16px/3dots.svg";
 import {ReactComponent as Trash} from "../icons/16px/Bin.svg";
 import classNames from "classnames";
+import CreateButton from "./Button/CreateButton";
 
 interface Props {
     list: ExerciseModel[];
@@ -71,17 +72,7 @@ const ExerciseMenu: React.FC<Props> = props => {
                         />
                     </div>
 
-                    <div className="form_submit flex justify-center items-center vh-100">
-                        <button
-                            className="create_exercise_btn relative"
-                            disabled={exerciseInput === ''}
-                            onClick={handleAddExercise}
-                        >
-                            <div className="element">
-                                <p>Create New Exercise</p>
-                            </div>
-                        </button>
-                    </div>
+                    <CreateButton buttonText={"Add Exercise"} input={exerciseInput} onClick={handleAddExercise}/>
                 </div>
         );
     }
