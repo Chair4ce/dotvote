@@ -22804,9 +22804,10 @@ video {
 
 .exercise_view {
   display: block;
+  height: 100%;
 }
 
-.app_header {
+.exercise_view_header {
   display: flex;
   background: #323232;
   flex-direction: row;
@@ -22837,9 +22838,6 @@ video {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100vw;
-  height: 100%;
-  top: 90px;
   /*cursor: grab;*/
   /*overflow: auto;*/
 }
@@ -22851,8 +22849,7 @@ video {
   align-items: center;
   position: -webkit-sticky;
   position: sticky;
-  top: 74px;
-  z-index: 1000;
+  width: 400px;
 }
 
 .card_stacks {
@@ -23248,12 +23245,9 @@ button:focus {
 }
 
 .exercise_current {
-  display: flex;
+  display: block;
   position: relative;
-  width: 100vw;
-  height: 100%;
-  align-items: center;
-  flex-direction: column;
+  overflow-y: auto;
   -webkit-animation: fadeinout 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
   animation: fadeinout 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
   opacity: 0;

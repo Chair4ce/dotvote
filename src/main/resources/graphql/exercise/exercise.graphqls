@@ -24,7 +24,7 @@ type Mutation {
 
     createIdea(name: String!, exerciseId: Int!): Idea!
     updateIdea(id: Int!, name: String!, exerciseId: Int): Idea!
-    deleteIdea(id: Int!, exerciseId: Int!): Idea!
+    deleteIdea(id: Int!): Idea!
 }
 
 

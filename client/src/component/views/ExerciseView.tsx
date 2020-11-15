@@ -26,7 +26,7 @@ const ExerciseView: React.FC<Props> = (props) => {
 
     return (
         <div data-testid="exercise-view" className={'exercise_view'}>
-            <header className="app_header">
+            <header className="exercise_view_header">
                 {selectedExercise ? <BackButton onClick={handleReset}/> : null}
                 {selectedExercise ? <h1>{selectedExercise.name}</h1> : <h1>The Dot Voter</h1>}
             </header>

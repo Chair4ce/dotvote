@@ -3,6 +3,7 @@ package redfive.tools.dotvote.idea;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import redfive.tools.dotvote.exercise.ExerciseRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,9 +44,9 @@ public class IdeaService {
         throw new javassist.NotFoundException("No idea to update!");
     }
 
-    public Idea deleteIdea(Long id, Long exerciseId) {
-        Idea idea = ideaRepository.findByIdAndExerciseId(id, exerciseId).orElseThrow(IdeaNotFoundException::new);
-        ideaRepository.deleteByIdAndExerciseId(id, exerciseId);
+    public Idea deleteIdea(Long id) {
+        Idea idea = ideaRepository.findById(id).orElseThrow(IdeaNotFoundException::new);
+        ideaRepository.deleteById(id);
         return idea;
     }
 }

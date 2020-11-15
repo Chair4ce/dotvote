@@ -7,6 +7,7 @@ import IdeaModel from "../../api/idea/IdeaModel";
 import '../cards/Cards.css';
 import CreateButton from "../Button/CreateButton";
 import IdeaCard from "../cards/IdeaCard";
+import {DELETE_IDEA} from "../../api/idea/Mutations/DELETE_IDEA";
 
 export interface IdeaData {
     ideas: IdeaModel[];
@@ -17,10 +18,35 @@ export interface Props {
     className?: String;
 }
 
+export const CALLBACK_ENUM = {
+    DELETE_IDEA: 'DELETE_IDEA',
+    VOTE_IDEA: 'VOTE_IDEA'
+}
+
 
 const CurrentExercise: React.FC<Props> = (props) => {
 
     const {loading, error, data} = useQuery<IdeaData>(FETCH_IDEAS, {variables: {exerciseId: props.exercise.id}});
+
+function callback_handler(action: string, data?: IdeaModel) {
+    switch (action) {
+        case CALLBACK_ENUM.DELETE_IDEA:
+            console.log(data)
+            deleteIdea({variables: {id: data!.id.toString(), exerciseId: data?.exerciseId }})
+            break;
+        case CALLBACK_ENUM.VOTE_IDEA:
+
+            break;
+    }
+}
+
+    const [deleteIdea] = useMutation(DELETE_IDEA, {
+            update(cache, {data}) {
+                const deletedIdeaId = 'Idea:' + data.deleteIdea.id.toString();
+                cache.evict({id: deletedIdeaId});
+            },
+        },
+    )
 
     function AddIdea() {
         const [ideaInput, setIdeaInput] = useState('');
@@ -93,7 +119,7 @@ const CurrentExercise: React.FC<Props> = (props) => {
 
             <div className="container">
                 {data ? data.ideas.map((m: IdeaModel) => {
-                    return <IdeaCard key={m.id} idea={m} onClick={handleOnClickCallback}/>
+                    return <IdeaCard key={m.id} idea={m} onClick={callback_handler}/>
                 }) : null}
             </div>
         </div>
