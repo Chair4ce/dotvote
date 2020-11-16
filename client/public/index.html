@@ -29,7 +29,14 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script type="text/javascript">
+      let card = document.querySelector('.red5card');
 
+      card.addEventListener('click', function () {
+        card.classList.toggle('is-flipped');
+        console.log(card.classList)
+      });
+    </script>
 <!--    <script>-->
 <!--      document.addEventListener('DOMContentLoaded', function() {-->
 <!--        const ele = document.getElementById('container');-->

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import ExerciseMenu from "../ExerciseMenu";
 import ExerciseModel from "../../api/exercise/ExerciseModel";
 import CurrentExercise from "./CurrentExercise";
