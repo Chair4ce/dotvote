@@ -7,14 +7,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ApolloProvider} from "@apollo/client";
 import client from "./apolloClient";
+import {CookiesProvider} from 'react-cookie';
 
 ReactDOM.render(
-  <React.StrictMode>
-      <ApolloProvider client={client}>
-    <App />
-      </ApolloProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <ApolloProvider client={client}>
+            <CookiesProvider>
+                <App/>
+            </CookiesProvider>
+        </ApolloProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -9,12 +9,19 @@ type Idea {
     exerciseId: Int!
 }
 
+type Player {
+    id: ID!
+    name: String!
+}
+
 type Query {
     exercise(id: ID!): Exercise
     exercises: [Exercise]
 
     idea(id: ID!, exerciseId: Int!): Idea
     ideas(exerciseId: Int!): [Idea]
+
+    player(id: ID!): Player
 }
 
 type Mutation {
@@ -25,6 +32,8 @@ type Mutation {
     createIdea(name: String!, exerciseId: Int!): Idea!
     updateIdea(id: Int!, name: String!, exerciseId: Int): Idea!
     deleteIdea(id: Int!): Idea!
+
+    playerLogin(name: String!): Player!
 }
 
 

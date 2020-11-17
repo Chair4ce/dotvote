@@ -3,11 +3,13 @@ import ExerciseMenu from "../ExerciseMenu";
 import ExerciseModel from "../../api/exercise/ExerciseModel";
 import CurrentExercise from "./CurrentExercise";
 import BackButton from "../Button/BackButton";
+import {Cookie} from "../../App";
 
 export interface Props {
     loading: boolean;
     error: any;
     exercises: ExerciseModel[];
+    cookie: Cookie | undefined;
     className?: String;
 }
 
