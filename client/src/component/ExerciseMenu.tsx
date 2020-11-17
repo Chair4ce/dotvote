@@ -72,7 +72,7 @@ const ExerciseMenu: React.FC<Props> = props => {
                         />
                     </div>
 
-                    <CreateButton buttonText={"Add Exercise"} input={exerciseInput} onClick={handleAddExercise}/>
+                    <CreateButton   wrapper={'create_exercise_btn_wrapper'} className={'create_exercise_btn'} buttonText={"Add Exercise"} input={exerciseInput} onClick={handleAddExercise}/>
                 </div>
         );
     }

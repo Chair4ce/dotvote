@@ -8,8 +8,9 @@ import {Cookie} from "../../App";
 export interface Props {
     loading: boolean;
     error: any;
-    exercises: ExerciseModel[];
     cookie: Cookie | undefined;
+    callback: () => void;
+    exercises?: ExerciseModel[];
     className?: String;
 }
 
@@ -26,11 +27,27 @@ const ExerciseView: React.FC<Props> = (props) => {
         setSelectedExercise(null)
     }
 
+    function handleLogOut() {
+
+    }
+
     return (
         <div data-testid="exercise-view" className={'exercise_view'}>
             <header className="exercise_view_header">
+                <div>
                 {selectedExercise ? <BackButton onClick={handleReset}/> : null}
+                </div>
+                <div>
                 {selectedExercise ? <h1>{selectedExercise.name}</h1> : <h1>The Dot Voter</h1>}
+                </div>
+                <div className={"playerProfile"}>
+                    <h5>
+                    Logged in as: {props.cookie?.userName}
+                    </h5>
+                    <button onClick={props.callback}>
+                        logout
+                    </button>
+                </div>
             </header>
             {selectedExercise ? <CurrentExercise exercise={selectedExercise}/> : null}
             {props.loading ? <p>Loading... </p> :

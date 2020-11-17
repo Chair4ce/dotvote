@@ -101,7 +101,12 @@ function callback_handler(action: string, data?: IdeaModel) {
                     />
 
                 </div>
-                <CreateButton buttonText={"Add Idea"} input={ideaInput} onClick={handleAddIdea}/>
+                <CreateButton
+                    wrapper={'create_idea_btn_wrapper'}
+                    className={'create_idea_btn'}
+                    buttonText={"Add Idea"}
+                    input={ideaInput}
+                    onClick={handleAddIdea}/>
 
             </div>
         );
