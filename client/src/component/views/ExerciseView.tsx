@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import ExerciseMenu from "../ExerciseMenu";
 import ExerciseModel from "../../api/exercise/ExerciseModel";
+import {ReactComponent as Red5Card} from "../../icons/TinyRed5Card.svg";
 import CurrentExercise from "./CurrentExercise";
 import BackButton from "../Button/BackButton";
 import {Cookie} from "../../App";
@@ -34,6 +35,9 @@ const ExerciseView: React.FC<Props> = (props) => {
     return (
         <div data-testid="exercise-view" className={'exercise_view'}>
             <header className="exercise_view_header">
+                <div className={'card_avatar'}>
+                    <Red5Card/>
+                </div>
                 <div>
                 {selectedExercise ? <BackButton onClick={handleReset}/> : null}
                 </div>
@@ -41,10 +45,7 @@ const ExerciseView: React.FC<Props> = (props) => {
                 {selectedExercise ? <h1>{selectedExercise.name}</h1> : <h1>The Dot Voter</h1>}
                 </div>
                 <div className={"playerProfile"}>
-                    <h5>
-                    Logged in as: {props.cookie?.userName}
-                    </h5>
-                    <button onClick={props.callback}>
+                    <button className={'logout_btn'} onClick={props.callback}>
                         logout
                     </button>
                 </div>
