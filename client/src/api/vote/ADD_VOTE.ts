@@ -5,10 +5,6 @@ export const ADD_VOTE = gql`
         addVote(voteType: $voteType, ideaId: $ideaId, playerId: $playerId) {
             id
             voteType
-            ideaId {
-                id 
-                name
-            }
             playerId {
                 id 
                 name

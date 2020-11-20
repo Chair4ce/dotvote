@@ -250,6 +250,9 @@ width: 100%;
 
 /*Exercise Card stacks*/
 
+p {
+    text-align: center;
+}
 
 * {
     padding: 0px;

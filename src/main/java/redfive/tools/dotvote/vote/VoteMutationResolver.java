@@ -5,12 +5,14 @@ import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class VoteMutationResolver implements GraphQLMutationResolver {
     private final VoteService voteService;
 
-    public Vote addVote(String voteType, Long ideaId, Long playerId) throws NotFoundException {
+    public List<Vote> addVote(String voteType, Long ideaId, Long playerId) throws NotFoundException {
         return voteService.addVote(voteType, ideaId, playerId);
     }
 

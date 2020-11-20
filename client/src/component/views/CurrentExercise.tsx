@@ -10,6 +10,7 @@ import IdeaCard from "../cards/IdeaCard";
 import {DELETE_IDEA} from "../../api/idea/Mutations/DELETE_IDEA";
 import {ADD_VOTE} from "../../api/vote/ADD_VOTE";
 import PlayerModel from "../../api/login/playerModel";
+import client from "../../apolloClient";
 
 export interface IdeaData {
     ideas: IdeaModel[];
@@ -30,6 +31,33 @@ export const CALLBACK_ENUM = {
 const CurrentExercise: React.FC<Props> = (props) => {
 
     const {loading, error, data} = useQuery<IdeaData>(FETCH_IDEAS, {variables: {exerciseId: props.exercise.id}});
+    const [addVote] = useMutation(ADD_VOTE, {
+        // update(cache, {data: {addVote}}) {
+        //     cache.modify({
+        //             fields: {
+        //                 votes(existingIdeas = [], {readField}) {
+        //                     const newVoteRef = cache.writeFragment(
+        //                         {
+        //                             data: addVote,
+        //                             fragment: gql`
+        //                                 fragment NewVotes on Vote {
+        //                                         id
+        //                                         voteType
+        //                                         playerId {
+        //                                             id
+        //                                             name
+        //                                         }
+        //                                 }
+        //                             `,
+        //                         },
+        //                     );
+        //                     return [...existingIdeas, newVoteRef];
+        //                 },
+        //             },
+        //         },
+        //     );
+        // },
+    });
 
 function callback_handler(action: string, data?: IdeaModel) {
     switch (action) {
@@ -38,7 +66,9 @@ function callback_handler(action: string, data?: IdeaModel) {
             deleteIdea({variables: {id: data!.id.toString(), exerciseId: data?.exerciseId }})
             break;
         case CALLBACK_ENUM.VOTE_IDEA:
-
+            if (props.player) {
+                addVote({variables: {voteType: "dot", ideaId: data?.id, playerId: props.player.id}})
+            }
             break;
     }
 }
