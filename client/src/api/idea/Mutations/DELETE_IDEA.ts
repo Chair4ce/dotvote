@@ -6,7 +6,6 @@ export const DELETE_IDEA = gql`
         deleteIdea(id: $id){
             id
             name
-            exerciseId
         }
     }
 `;

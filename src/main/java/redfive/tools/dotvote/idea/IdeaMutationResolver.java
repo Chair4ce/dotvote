@@ -12,14 +12,9 @@ import redfive.tools.dotvote.exercise.ExerciseService;
 @AllArgsConstructor
 public class IdeaMutationResolver implements GraphQLMutationResolver {
     private final IdeaService ideaService;
-    private final ExerciseService exerciseService;
 
-    public Idea createIdea(String name, Long exerciseId) throws NotFoundException {
+    public Idea createIdea(String name, Long exerciseId) {
         return ideaService.createIdea(name, exerciseId);
-    }
-
-    public Idea updateIdea(Long id, String name, Long exerciseId) throws NotFoundException {
-        return ideaService.updateIdea(id, name, exerciseId);
     }
 
   @Transactional

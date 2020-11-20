@@ -13,7 +13,7 @@ public class IdeaQueryResolver implements GraphQLQueryResolver {
 
     private final IdeaService ideaService;
 
-    public Optional<Idea> idea(Long id, Long exerciseId) { return ideaService.getIdea(id, exerciseId); }
+    public Optional<Idea> idea(Long id) { return ideaService.getIdea(id); }
 
     public List<Idea> ideas(Long exerciseId) { return ideaService.getIdeasByExerciseId(exerciseId); }
 }

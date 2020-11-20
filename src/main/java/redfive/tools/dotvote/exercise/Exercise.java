@@ -25,4 +25,12 @@ public class Exercise {
 
     public Exercise(String name) { this.name = name; }
 
+    @Override
+    public String toString() {
+        return "Exercise {" +
+                "id=" + id +
+                ", voteType='" + name + '\'' +
+        '}';
+    }
+
 }

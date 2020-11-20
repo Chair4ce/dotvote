@@ -2,6 +2,7 @@ package redfive.tools.dotvote.idea;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import redfive.tools.dotvote.exercise.Exercise;
 
 import javax.persistence.*;
 
@@ -15,20 +16,30 @@ public class Idea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "exercise_id", nullable = false)
-    private Long exerciseId;
+    @ManyToOne
+    @JoinColumn(name = "exercise_id", nullable = false, updatable = false)
+    private Exercise exerciseId;
 
-    public Idea(Long id, String name, Long exerciseId) {
+
+    public Idea(Long id, String name, Exercise exercise) {
         this.id = id;
         this.name = name;
-        this.exerciseId = exerciseId;
+        this.exerciseId = exercise;
     }
 
-    public Idea(String name, Long exerciseId) {
+    public Idea(String name, Exercise exercise) {
         this.name = name;
-        this.exerciseId = exerciseId;
+        this.exerciseId = exercise;
+    }
+
+    @Override
+    public String toString() {
+        return "Idea {" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", exercise=" + exerciseId +
+                '}';
     }
 }

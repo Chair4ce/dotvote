@@ -2,11 +2,18 @@ type Exercise {
     id: ID!
     name: String!
 }
+type Vote {
+    id: ID!
+    voteType: String!
+    ideaId: Idea!
+    playerId: Player!
+}
 
 type Idea {
     id: ID!
     name: String!
-    exerciseId: Int!
+    exerciseId: Exercise!
+    votes: [Vote!]!
 }
 
 type Player {
@@ -15,25 +22,26 @@ type Player {
 }
 
 type Query {
-    exercise(id: ID!): Exercise
+    exercise(id: Int!): Exercise
     exercises: [Exercise]
 
-    idea(id: ID!, exerciseId: Int!): Idea
+    idea(id: Int!): Idea
     ideas(exerciseId: Int!): [Idea]
 
-    player(id: ID!): Player
+    player(id: Int!): Player
 }
 
 type Mutation {
     createExercise(name: String!): Exercise!
-    updateExercise(id: Int!, name: String!): Exercise!
     deleteExercise(id: Int!): Exercise!
 
     createIdea(name: String!, exerciseId: Int!): Idea!
-    updateIdea(id: Int!, name: String!, exerciseId: Int): Idea!
     deleteIdea(id: Int!): Idea!
 
     playerLogin(name: String!): Player!
+
+    addVote(voteType: String!, ideaId: Int!, playerId: Int!): Vote!
+    deleteVote(id: Int!): Vote!
 }
 
 

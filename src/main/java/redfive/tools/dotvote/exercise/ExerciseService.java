@@ -46,7 +46,7 @@ public class ExerciseService {
 
     public Exercise deleteExercise(Long id) {
         Exercise exercise = exerciseRepository.findById(id).orElseThrow(ExerciseNotFoundException::new);
-        List<Idea> ideas = ideaRepository.findAllByExerciseId(id);
+        List<Idea> ideas = ideaRepository.findAllByExerciseId(exercise);
         if (!ideas.isEmpty()) {
             ideas.forEach((idea) -> {
                 ideaRepository.deleteById(idea.getId());

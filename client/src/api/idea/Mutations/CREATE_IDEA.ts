@@ -5,7 +5,14 @@ export const CREATE_IDEA = gql`
         createIdea(name: $text, exerciseId: $exerciseId) {
             id
             name
-            exerciseId
+            votes {
+                id
+                voteType
+                playerId {
+                    id
+                    name
+                }
+            }
         }
     }
 `;

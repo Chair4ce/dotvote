@@ -3,6 +3,8 @@ package redfive.tools.dotvote.idea;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import redfive.tools.dotvote.exercise.Exercise;
+import redfive.tools.dotvote.exercise.ExerciseNotFoundException;
 import redfive.tools.dotvote.exercise.ExerciseRepository;
 
 import java.util.List;
@@ -13,36 +15,27 @@ import java.util.Optional;
 public class IdeaService {
 
     private final IdeaRepository ideaRepository;
+    private final ExerciseRepository exerciseRepository;
 
-    public Optional<Idea> getIdea(Long id, Long exerciseId) {
-        return ideaRepository.findByIdAndExerciseId(id, exerciseId);
+    public Optional<Idea> getIdea(Long id) {
+        return ideaRepository.findById(id);
     }
 
     public List<Idea> getIdeasByExerciseId(Long exerciseId) {
-        return ideaRepository.findAllByExerciseId(exerciseId);
+        Exercise exercise = exerciseRepository.findById(exerciseId).orElseThrow(ExerciseNotFoundException::new);
+
+        return ideaRepository.findAllByExerciseId(exercise);
     }
 
-    public Idea createIdea(String name, Long exerciseId) throws javassist.NotFoundException {
+    public Idea createIdea(String name, Long exerciseId) {
+        Exercise exercise = exerciseRepository.findById(exerciseId).orElseThrow(ExerciseNotFoundException::new);
+
         if (name != null) {
-            return ideaRepository.save(new Idea(name, exerciseId));
+            return ideaRepository.save(new Idea(name, exercise));
         }
-        throw new javassist.NotFoundException("idea could not be created!");
+        return null;
     }
 
-    public Idea updateIdea(Long id, String name, Long exerciseId) throws javassist.NotFoundException {
-        Optional<Idea> optIdea = ideaRepository.findByIdAndExerciseId(id, exerciseId);
-
-        if (optIdea.isPresent()) {
-            Idea idea = optIdea.get();
-            if (name != null) {
-                idea.setName(name);
-                idea.setExerciseId(exerciseId);
-                ideaRepository.save(idea);
-            }
-            return idea;
-        }
-        throw new javassist.NotFoundException("No idea to update!");
-    }
 
     public Idea deleteIdea(Long id) {
         Idea idea = ideaRepository.findById(id).orElseThrow(IdeaNotFoundException::new);

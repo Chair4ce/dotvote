@@ -14,10 +14,6 @@ public class ExerciseMutationResolver implements GraphQLMutationResolver {
         return exerciseService.createExercise(name);
     }
 
-    public Exercise updateExercise(Long id, String name) throws NotFoundException {
-        return exerciseService.updateExercise(id, name);
-    }
-
     public Exercise deleteExercise(Long id) {
         return exerciseService.deleteExercise(id);
     }

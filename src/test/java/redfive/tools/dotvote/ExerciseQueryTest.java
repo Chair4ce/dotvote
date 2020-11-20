@@ -10,6 +10,7 @@ import redfive.tools.dotvote.exercise.Exercise;
 import redfive.tools.dotvote.exercise.ExerciseService;
 import redfive.tools.dotvote.idea.IdeaService;
 import redfive.tools.dotvote.player.PlayerService;
+import redfive.tools.dotvote.vote.VoteService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,6 +31,9 @@ public class ExerciseQueryTest extends BaseIntegrationTest {
 
     @MockBean
     private PlayerService playerServiceMock;
+
+    @MockBean
+    private VoteService voteServiceMock;
 
     @Test
     public void getExerciseById() throws Exception {
