@@ -5,6 +5,7 @@ import {ReactComponent as Red5Card} from "../../icons/TinyRed5Card.svg";
 import CurrentExercise from "./CurrentExercise";
 import BackButton from "../Button/BackButton";
 import {Cookie} from "../../App";
+import PlayerModel from "../../api/login/playerModel";
 
 export interface Props {
     loading: boolean;
@@ -18,6 +19,8 @@ export interface Props {
 const ExerciseView: React.FC<Props> = (props) => {
 
     const [selectedExercise, setSelectedExercise] = useState<ExerciseModel  | null>(null);
+
+    const [player, setPlayer] = useState( props.cookie ? new PlayerModel(props.cookie.id, props.cookie.userName, "player") : undefined);
 
 
     function handleCallback(exercise: ExerciseModel) {
@@ -50,7 +53,7 @@ const ExerciseView: React.FC<Props> = (props) => {
                     </button>
                 </div>
             </header>
-            {selectedExercise ? <CurrentExercise exercise={selectedExercise}/> : null}
+            {selectedExercise ? <CurrentExercise exercise={selectedExercise} player={player}/> : null}
             {props.loading ? <p>Loading... </p> :
                 props.error ? <p>Uh oh! {props.error}</p> :
                     props.exercises && !selectedExercise ?

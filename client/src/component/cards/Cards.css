@@ -19,15 +19,34 @@ h3 {
 }
 
 .card {
-    display: flex;
+    display: block;
     height: 219px;
     width: 200px;
     background-color: #1a1a1a;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: 0.2s ease-out;
     position: relative;
     margin: 10px;
     left: 0px;
+}
+
+.vote_container {
+    position: absolute;
+    background: aliceblue;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ideaCard_delete_btn {
+    border: none;
+    background: #6B75A1;
+    height: 22px;
+    width: 43px;
 }
 
 /*.card:not(:first-child) {*/
@@ -35,7 +54,7 @@ h3 {
 /*}*/
 
 .card:hover {
-    transform: translateY(5px);
+    transform: translateY(1px);
     transition: 0.2s ease-out;
     box-shadow: -3px 3px 3px #212121;
 }
@@ -104,6 +123,17 @@ h3 {
     width: 64px;
     height: 100px;
     transition: 0.1s ease-out;
+}
+
+.circle_tiny {
+    position: relative;
+    z-index: 2500;
+}
+
+.circle_tiny > svg {
+    fill: #486e6a;
+    width: 10px;
+    height: 10px;
 }
 
 svg:hover {

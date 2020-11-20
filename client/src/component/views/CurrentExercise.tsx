@@ -8,6 +8,8 @@ import '../cards/Cards.css';
 import CreateButton from "../Button/CreateButton";
 import IdeaCard from "../cards/IdeaCard";
 import {DELETE_IDEA} from "../../api/idea/Mutations/DELETE_IDEA";
+import {ADD_VOTE} from "../../api/vote/ADD_VOTE";
+import PlayerModel from "../../api/login/playerModel";
 
 export interface IdeaData {
     ideas: IdeaModel[];
@@ -15,6 +17,7 @@ export interface IdeaData {
 
 export interface Props {
     exercise: ExerciseModel;
+    player: PlayerModel | undefined;
     className?: String;
 }
 
@@ -48,6 +51,8 @@ function callback_handler(action: string, data?: IdeaModel) {
         },
     )
 
+
+
     function AddIdea() {
         const [ideaInput, setIdeaInput] = useState('');
 
@@ -63,7 +68,9 @@ function callback_handler(action: string, data?: IdeaModel) {
                                     fragment: gql`
                                         fragment NewIdea on Idea {
                                             name
-                                            exerciseId
+                                            exerciseId {
+                                                name
+                                            }
                                         }
                                     `,
                                 },
@@ -84,6 +91,8 @@ function callback_handler(action: string, data?: IdeaModel) {
                 setIdeaInput('');
             }
         }
+
+
 
         return (
             <div data-testid="current-exercise" className="create_exercise_form">
@@ -122,11 +131,12 @@ function callback_handler(action: string, data?: IdeaModel) {
                 {AddIdea()}
             </div>
 
-            <div className="container">
+            {!loading ? <div className="container">
                 {data ? data.ideas.map((m: IdeaModel) => {
-                    return <IdeaCard key={m.id} idea={m} onClick={callback_handler}/>
+                    return <IdeaCard key={m.id} idea={m} player={props.player} onClick={callback_handler}/>
                 }) : null}
-            </div>
+            </div> : null }
+
         </div>
     )
 }

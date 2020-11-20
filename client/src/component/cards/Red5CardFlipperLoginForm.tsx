@@ -9,7 +9,6 @@ import {Cookie} from "../../App";
 
 
 interface Props {
-
     callback: () => void;
     cookie?: Cookie;
     className?: string;
@@ -26,19 +25,21 @@ const Red5CardFlipperLoginForm: React.FC<Props> = props => {
 
     function UserLogin() {
         const [loginInput, setLoginInput] = useState<string>(props.cookie?.userName ? props.cookie?.userName : '');
-        const [loginUser, {error: mutationError}] = useMutation(PLAYER_LOGIN, {});
         const [, setUserCookie] = useCookies(['dotvote']);
-        const handleLogin = () => {
+        const [loginUser, {loading, error: mutationError, data}] = useMutation(PLAYER_LOGIN, {});
+
+        function handleLogin() {
             if (loginInput !== '') {
-                loginUser({variables: {text: loginInput}});
-                if(!mutationError?.graphQLErrors) {
-                    setUserCookie('dotvote', {userName: loginInput},
+                loginUser({variables: {text: loginInput}}).then(r => {
+                    setUserCookie('dotvote', {id: r.data.playerLogin.id ,userName: r.data.playerLogin.name },
                         {expires: new Date(new Date().getTime() + cookieValidTimeInMS)});
-                }
+                });
+                console.log('finished mutation')
                 setLoginInput('');
                 props.callback();
             }
         }
+
 
         return (
             <div className="user_login_form">
