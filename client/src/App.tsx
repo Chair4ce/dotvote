@@ -3,7 +3,7 @@ import {useQuery} from "@apollo/client";
 import {FETCH_EXERCISES} from "./api/exercise/Queries/FETCH_EXERCISES";
 import ExerciseModel from "./api/exercise/ExerciseModel";
 
-import Red5CardFlipperLoginForm from "./component/cards/Red5CardFlipperLoginForm";
+import Red5CardFlipperLoginForm from "./component/forms/Red5CardFlipperLoginForm";
 import {useCookies} from "react-cookie";
 import ExerciseView from "./component/views/ExerciseView";
 
@@ -19,8 +19,8 @@ export interface Cookie {
 function App() {
 
     const {loading, error, data} = useQuery<ExerciseData>(FETCH_EXERCISES);
-    const [loggedIn, setLogin] = useState(false);
-    const [userCookie, setCookie, removeCookie] = useCookies(['dotvote']);
+    const [, setLogin] = useState(false);
+    const [userCookie,, removeCookie] = useCookies(['dotvote']);
     let cookie: Cookie | undefined = userCookie.dotvote;
 
     function handleLogin() {

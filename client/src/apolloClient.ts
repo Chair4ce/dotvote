@@ -1,15 +1,14 @@
+import {ApolloClient, InMemoryCache} from '@apollo/client';
 
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-
-const client = new ApolloClient(
+export const client = new ApolloClient(
     {
         uri: '/api/graphql',
         cache: new InMemoryCache(
             {
                 typePolicies: {
-                    ideas: {
+                    Ideas: {
                         fields: {
-                            idea: {
+                            Idea: {
                                 merge(existing = [], incoming: any[]) {
                                     return [...existing, ...incoming];
                                 },
@@ -23,4 +22,27 @@ const client = new ApolloClient(
     },
 );
 
-export default client;
+// const httpLink = new HttpLink({
+//     uri: '/api/graphql'
+// });
+//
+//
+// export const wsLink = new WebSocketLink({
+//     uri: `/api/graphql`,
+//     options: {
+//         reconnect: true
+//     }
+// });
+//
+// const splitLink = split(
+//     ({ query }) => {
+//         const definition = getMainDefinition(query);
+//         return (
+//             definition.kind === 'OperationDefinition' &&
+//             definition.operation === 'subscription'
+//         );
+//     },
+//     wsLink,
+//     httpLink,
+// );
+

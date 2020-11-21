@@ -8,16 +8,14 @@ import '../cards/Cards.css';
 import CreateButton from "../Button/CreateButton";
 import IdeaCard from "../cards/IdeaCard";
 import {DELETE_IDEA} from "../../api/idea/Mutations/DELETE_IDEA";
-import {ADD_VOTE} from "../../api/vote/ADD_VOTE";
 import PlayerModel from "../../api/login/playerModel";
-import client from "../../apolloClient";
 
 export interface IdeaData {
     ideas: IdeaModel[];
 }
 
 export interface Props {
-    exercise: ExerciseModel;
+    exercise: ExerciseModel | null;
     player: PlayerModel | undefined;
     className?: String;
 }
@@ -29,29 +27,6 @@ export const CALLBACK_ENUM = {
 
 
 const CurrentExercise: React.FC<Props> = (props) => {
-
-    const {loading, error, data} = useQuery<IdeaData>(FETCH_IDEAS, {variables: {exerciseId: props.exercise.id}});
-
-
-function callback_handler(action: string, data?: IdeaModel) {
-    switch (action) {
-        case CALLBACK_ENUM.DELETE_IDEA:
-            deleteIdea({variables: {id: data!.id.toString(), exerciseId: data?.exerciseId }})
-            break;
-        case CALLBACK_ENUM.VOTE_IDEA:
-
-            break;
-    }
-}
-
-    const [deleteIdea] = useMutation(DELETE_IDEA, {
-            update(cache, {data}) {
-                const deletedIdeaId = 'Idea:' + data.deleteIdea.id.toString();
-                cache.evict({id: deletedIdeaId});
-            },
-        },
-    )
-
 
 
     function AddIdea() {
@@ -94,7 +69,6 @@ function callback_handler(action: string, data?: IdeaModel) {
         }
 
 
-
         return (
             <div data-testid="current-exercise" className="create_exercise_form">
                 <div className={"form_input"}>
@@ -122,24 +96,54 @@ function callback_handler(action: string, data?: IdeaModel) {
         );
     }
 
-    function handleOnClickCallback() {
-        console.log("click!!!")
+
+    function RenderIdeas() {
+
+        const {loading, data} = useQuery<IdeaData>(FETCH_IDEAS, {variables: {exerciseId: props.exercise!.id}});
+
+        const [deleteIdea] = useMutation(DELETE_IDEA, {
+                update(cache, {data}) {
+                    const deletedIdeaId = 'Idea:' + data.deleteIdea.id.toString();
+                    cache.evict({id: deletedIdeaId});
+                },
+            },
+        )
+
+        // function callback_handler(action: string, data?: IdeaModel) {
+        //     switch (action) {
+        //         case CALLBACK_ENUM.DELETE_IDEA:
+        //             deleteIdea({variables: {id: data!.id.toString(), exerciseId: data?.exerciseId }})
+        //             break;
+        //         case CALLBACK_ENUM.VOTE_IDEA:
+        //
+        //             break;
+        //     }
+        // }
+
+        return (
+            <>
+                {!loading ? <div className="container">
+                    {data ? data.ideas.map((m: IdeaModel) => {
+                        return <IdeaCard key={m.id} idea={m} player={props.player} deleteIdea={deleteIdea}/>
+                    }) : null}
+                </div> : null}
+            </>
+        )
+
     }
 
+    if (props.exercise !== null) {
     return (
         <div data-testid="exercise-current" className="exercise_current">
             <div className="exercise_menu_sub_header">
                 {AddIdea()}
             </div>
-
-            {!loading ? <div className="container">
-                {data ? data.ideas.map((m: IdeaModel) => {
-                    return <IdeaCard key={m.id} idea={m} player={props.player} onClick={callback_handler}/>
-                }) : null}
-            </div> : null }
-
+            {RenderIdeas()}
         </div>
     )
+    } else {
+        return (<></>)
+    }
 }
 
 export default CurrentExercise;

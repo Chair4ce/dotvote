@@ -27,7 +27,7 @@ const ExerciseMenu: React.FC<Props> = props => {
 
     function AddExercise() {
         const [exerciseInput, setExerciseInput] = useState('');
-        const [createExercise, {error: mutationError}] = useMutation(CREATE_EXERCISE, {
+        const [createExercise] = useMutation(CREATE_EXERCISE, {
             update(cache, {data: {createExercise}}) {
                 cache.modify({
                     fields: {

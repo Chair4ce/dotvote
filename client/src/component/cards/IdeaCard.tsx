@@ -1,6 +1,5 @@
 import React from 'react';
 import IdeaModel from "../../api/idea/IdeaModel";
-import {CALLBACK_ENUM} from "../views/CurrentExercise";
 import PlayerModel from "../../api/login/playerModel";
 import VoteModel from "../../api/vote/VoteModel";
 import {ReactComponent as MoreDots} from "../../icons/16px/3dots.svg";
@@ -9,9 +8,10 @@ import {gql, useMutation} from "@apollo/client";
 import {ADD_VOTE} from "../../api/vote/ADD_VOTE";
 import classNames from "classnames";
 
+
 interface Props {
     idea: IdeaModel;
-    onClick: (name: string, data?: IdeaModel) => void;
+    deleteIdea: ({}: Object) => void;
     player?: PlayerModel;
     className?: string;
 }
@@ -53,7 +53,8 @@ export const IdeaCard: React.FC<Props> = props => {
     });
 
     function handleClick() {
-        props.onClick(CALLBACK_ENUM.DELETE_IDEA, props.idea);
+        // props.onClick(CALLBACK_ENUM.DELETE_IDEA, props.idea);
+        props.deleteIdea({variables: {id: props.idea.id.toString(), exerciseId: props.idea.exerciseId }});
     }
 
     function handleVote() {
