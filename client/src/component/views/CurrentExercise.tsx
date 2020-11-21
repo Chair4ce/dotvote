@@ -28,12 +28,10 @@ export const CALLBACK_ENUM = {
 
 const CurrentExercise: React.FC<Props> = (props) => {
 
-
     function AddIdea() {
         const [ideaInput, setIdeaInput] = useState('');
 
-
-        const [createIdea] = useMutation(CREATE_IDEA, {
+        const [createIdea, {error: mutationerror}] = useMutation(CREATE_IDEA, {
             update(cache, {data: {createIdea}}) {
                 cache.modify({
                     fields: {
@@ -63,11 +61,9 @@ const CurrentExercise: React.FC<Props> = (props) => {
                 if (props.exercise) {
                     createIdea({variables: {text: ideaInput, exerciseId: props.exercise.id}})
                 }
-
                 setIdeaInput('');
             }
         }
-
 
         return (
             <div data-testid="current-exercise" className="create_exercise_form">
@@ -75,6 +71,7 @@ const CurrentExercise: React.FC<Props> = (props) => {
                     <input
                         className="exercise_menu_input_text"
                         value={ideaInput}
+                        maxLength={64}
                         onChange={(event) => setIdeaInput(event.target.value)}
                         onKeyPress={event => {
                             if (event.key === 'Enter') {
@@ -83,7 +80,6 @@ const CurrentExercise: React.FC<Props> = (props) => {
                         }}
                         placeholder={'Title'}
                     />
-
                 </div>
                 <CreateButton
                     wrapper={'create_idea_btn_wrapper'}
@@ -95,7 +91,6 @@ const CurrentExercise: React.FC<Props> = (props) => {
             </div>
         );
     }
-
 
     function RenderIdeas() {
 

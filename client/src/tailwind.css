@@ -139,6 +139,7 @@ width: 100%;
 
 
 .exercise_view_header {
+
     display: flex;
     background: #323232;
     flex-direction: row;
@@ -146,6 +147,24 @@ width: 100%;
     align-items: center;
     height: 80px;
     width: 100%;
+}
+
+.exercise_tile_body {
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+
+.exercise_title_text {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    padding: 20px;
+    font-size: 1.3rem;
+    margin: 0;
 }
 
 .exercise_menu {

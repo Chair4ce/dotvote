@@ -7,7 +7,6 @@ import {useCookies} from "react-cookie";
 import {PLAYER_LOGIN} from "../../api/login/USER_LOGIN";
 import {Cookie} from "../../App";
 
-
 interface Props {
     callback: () => void;
     cookie?: Cookie;
@@ -38,6 +37,7 @@ const Red5CardFlipperLoginForm: React.FC<Props> = props => {
                 props.callback();
             }
         }
+
         return (
             <div className="user_login_form">
                 <div className={"form_input"}>
@@ -75,11 +75,8 @@ const Red5CardFlipperLoginForm: React.FC<Props> = props => {
             </div>
 
         </div>
-
-
     )
 }
-
 
 export default Red5CardFlipperLoginForm;
 

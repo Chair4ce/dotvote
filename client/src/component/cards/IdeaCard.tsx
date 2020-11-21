@@ -8,7 +8,6 @@ import {gql, useMutation} from "@apollo/client";
 import {ADD_VOTE} from "../../api/vote/ADD_VOTE";
 import classNames from "classnames";
 
-
 interface Props {
     idea: IdeaModel;
     deleteIdea: ({}: Object) => void;
@@ -17,7 +16,6 @@ interface Props {
 }
 
 export const IdeaCard: React.FC<Props> = props => {
-
 
     const [addVote] = useMutation(ADD_VOTE, {
         update(cache, {data: {addVote}}) {

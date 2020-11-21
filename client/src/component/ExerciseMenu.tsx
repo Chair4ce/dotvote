@@ -16,7 +16,6 @@ interface Props {
 
 const ExerciseMenu: React.FC<Props> = props => {
 
-
     const [deleteExercise] = useMutation(DELETE_EXERCISE, {
             update(cache, {data}) {
                 const deletedExerciseId = 'Exercise:' + data.deleteExercise.id.toString();
@@ -62,6 +61,7 @@ const ExerciseMenu: React.FC<Props> = props => {
                         <input
                             className="exercise_menu_input_text"
                             value={exerciseInput}
+                            maxLength={64}
                             onChange={(event) => setExerciseInput(event.target.value)}
                             onKeyPress={event => {
                                 if (event.key === 'Enter') {
@@ -95,7 +95,6 @@ const ExerciseMenu: React.FC<Props> = props => {
         return comparison;
     }
 
-
     return (
         <div data-testid="exercise-menu" className={classNames("exercise_menu")}>
             <div className="exercise_menu_sub_header">
@@ -114,7 +113,7 @@ const ExerciseMenu: React.FC<Props> = props => {
                                         <span/>
                                         <span/>
                                         <span className="">
-                                        <p className="text-xs">
+                                        <p className="title">
                                         {exercise.name}
                                         </p>
                                     </span>

@@ -20,9 +20,7 @@ const ExerciseView: React.FC<Props> = (props) => {
 
     const [selectedExercise, setSelectedExercise] = useState<ExerciseModel  | null>(null);
 
-
     const [player] = useState( props.cookie ? new PlayerModel(props.cookie.id, props.cookie.userName, "player") : undefined);
-
 
     function handleCallback(exercise: ExerciseModel) {
         setSelectedExercise(null)
@@ -42,8 +40,8 @@ const ExerciseView: React.FC<Props> = (props) => {
                 <div>
                 {selectedExercise ? <BackButton onClick={handleReset}/> : null}
                 </div>
-                <div>
-                {selectedExercise ? <h1>{selectedExercise.name}</h1> : <h1>The Dot Voter</h1>}
+                <div className={'exercise_Title_Body'}>
+                {selectedExercise ? <h1 className={'exercise_title_text'}>{selectedExercise.name}</h1> : <h1>The Dot Voter</h1>}
                 </div>
                 <div className={"playerProfile"}>
                     <button className={'logout_btn'} onClick={props.callback}>

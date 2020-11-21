@@ -81,10 +81,11 @@ h3 {
 }
 
 .title {
+    overflow-wrap: anywhere;
     color: white;
     font-weight: 300;
     height: 130px;
-    width: 100%;
+    width: 90%;
     display: flex;
     /* text-align: center; */
     justify-content: center;
