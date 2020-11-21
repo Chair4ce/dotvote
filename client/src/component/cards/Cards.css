@@ -22,7 +22,7 @@ h3 {
 }
 
 .card {
-    display: block;
+    display: flex;
     height: 219px;
     width: 200px;
     background-color: #1a1a1a;
@@ -30,19 +30,29 @@ h3 {
     transition: 0.2s ease-out;
     position: relative;
     margin: 10px;
-    left: 0px;
+    align-items: center;
+    flex-direction: column;
 }
 
 .vote_container {
     position: absolute;
-    background: aliceblue;
+    background: #1b1c1f;
     bottom: 0;
-    height: 30px;
+    height: 20px;
     width: 100%;
+    border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.vote_count {
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .ideaCard_delete_btn {
@@ -73,9 +83,12 @@ h3 {
 .title {
     color: white;
     font-weight: 300;
-    position: absolute;
-    left: 20px;
-    top: 15px;
+    height: 130px;
+    width: 100%;
+    display: flex;
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
 }
 
 /*.bar {*/
@@ -109,9 +122,10 @@ h3 {
 }
 
 .circle {
-    position: absolute;
-    top: 100px;
-    left: calc(39% - 59px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
 }
 
 .stroke {
@@ -125,7 +139,7 @@ h3 {
     fill: #4a6262;
     stroke-width: 2px;
     width: 64px;
-    height: 100px;
+    height: 81px;
     transition: 0.1s ease-out;
 }
 
@@ -135,7 +149,13 @@ h3 {
 }
 
 .circle_tiny > svg {
-    fill: #486e6a;
+    /*fill: #486e6a;*/
+    width: 10px;
+    height: 10px;
+}
+
+.my_vote > svg {
+    fill: #F5A629;
     width: 10px;
     height: 10px;
 }

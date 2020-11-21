@@ -5,19 +5,19 @@ const client = new ApolloClient(
     {
         uri: '/api/graphql',
         cache: new InMemoryCache(
-            // {
-            //     typePolicies: {
-            //         ideas: {
-            //             fields: {
-            //                 votes: {
-            //                     merge(existing = [], incoming: any[]) {
-            //                         return [...existing, ...incoming];
-            //                     },
-            //                 },
-            //             },
-            //         },
-            //     },
-            // }
+            {
+                typePolicies: {
+                    ideas: {
+                        fields: {
+                            idea: {
+                                merge(existing = [], incoming: any[]) {
+                                    return [...existing, ...incoming];
+                                },
+                            },
+                        },
+                    },
+                },
+            }
             ),
         connectToDevTools: true,
     },

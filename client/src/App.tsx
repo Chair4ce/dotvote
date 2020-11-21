@@ -35,7 +35,9 @@ function App() {
     function renderApp() {
         if (cookie?.userName) {
             return (
-                <ExerciseView loading={loading} exercises={data?.exercises} error={error} cookie={cookie} callback={handleLogOut}/>
+                <>
+                { data ? <ExerciseView loading={loading} exercises={data?.exercises} error={error} cookie={cookie} callback={handleLogOut}/> : null}
+                </>
             )
         } else {
             return (

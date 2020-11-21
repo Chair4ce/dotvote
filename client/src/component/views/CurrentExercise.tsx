@@ -31,44 +31,15 @@ export const CALLBACK_ENUM = {
 const CurrentExercise: React.FC<Props> = (props) => {
 
     const {loading, error, data} = useQuery<IdeaData>(FETCH_IDEAS, {variables: {exerciseId: props.exercise.id}});
-    const [addVote] = useMutation(ADD_VOTE, {
-        // update(cache, {data: {addVote}}) {
-        //     cache.modify({
-        //             fields: {
-        //                 votes(existingIdeas = [], {readField}) {
-        //                     const newVoteRef = cache.writeFragment(
-        //                         {
-        //                             data: addVote,
-        //                             fragment: gql`
-        //                                 fragment NewVotes on Vote {
-        //                                         id
-        //                                         voteType
-        //                                         playerId {
-        //                                             id
-        //                                             name
-        //                                         }
-        //                                 }
-        //                             `,
-        //                         },
-        //                     );
-        //                     return [...existingIdeas, newVoteRef];
-        //                 },
-        //             },
-        //         },
-        //     );
-        // },
-    });
+
 
 function callback_handler(action: string, data?: IdeaModel) {
     switch (action) {
         case CALLBACK_ENUM.DELETE_IDEA:
-            console.log(data)
             deleteIdea({variables: {id: data!.id.toString(), exerciseId: data?.exerciseId }})
             break;
         case CALLBACK_ENUM.VOTE_IDEA:
-            if (props.player) {
-                addVote({variables: {voteType: "dot", ideaId: data?.id, playerId: props.player.id}})
-            }
+
             break;
     }
 }

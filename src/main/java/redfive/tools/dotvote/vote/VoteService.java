@@ -25,12 +25,12 @@ public class VoteService {
         return voteRepository.findAllByIdeaId(idea);
     }
 
-    public List<Vote> addVote(String name, Long ideaId, Long playerId) throws javassist.NotFoundException {
+    public Idea addVote(String name, Long ideaId, Long playerId) throws javassist.NotFoundException {
         Idea idea = ideaRepository.findById(ideaId).orElseThrow(IdeaNotFoundException::new);
         Player player = playerRepository.findById(playerId).orElseThrow(PlayerNotFoundException::new);
         if (name != null) {
-             voteRepository.save(new Vote(name, idea, player));
-            return voteRepository.findAllByIdeaId(idea);
+              voteRepository.save(new Vote(name, idea, player));
+              return idea;
         }
         throw new javassist.NotFoundException("Vote could not be added!");
     }

@@ -1,6 +1,0 @@
-mutation updateExercise {
-    updateExercise(id: 1, name: "Retro") {
-        id
-        name
-    }
-}

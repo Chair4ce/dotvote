@@ -4,15 +4,14 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
+import redfive.tools.dotvote.idea.Idea;
 
 @Component
 @AllArgsConstructor
 public class VoteMutationResolver implements GraphQLMutationResolver {
     private final VoteService voteService;
 
-    public List<Vote> addVote(String voteType, Long ideaId, Long playerId) throws NotFoundException {
+    public Idea addVote(String voteType, Long ideaId, Long playerId) throws NotFoundException {
         return voteService.addVote(voteType, ideaId, playerId);
     }
 

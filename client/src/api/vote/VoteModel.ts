@@ -1,12 +1,15 @@
+import PlayerModel from "../login/playerModel";
+import IdeaModel from "../idea/IdeaModel";
+
 export default class VoteModel {
     private _id: number;
     private _voteType: string;
-    private _ideaId: number;
-    private _playerId: number;
+    private _ideaId: IdeaModel;
+    private _playerId: PlayerModel;
     private _nameType: string
 
 
-    constructor(id: number, voteType: string, ideaId: number, playerId: number, nameType: string) {
+    constructor(id: number, voteType: string, ideaId: IdeaModel, playerId: PlayerModel, nameType: string) {
         this._id = id;
         this._voteType = voteType;
         this._ideaId = ideaId;
@@ -23,11 +26,11 @@ export default class VoteModel {
         return this._voteType;
     }
 
-    get ideaId(): number {
+    get ideaId(): IdeaModel {
         return this._ideaId;
     }
 
-    get playerId(): number {
+    get playerId(): PlayerModel {
         return this._playerId;
     }
 

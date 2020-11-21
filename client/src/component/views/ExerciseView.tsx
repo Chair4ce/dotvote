@@ -53,7 +53,7 @@ const ExerciseView: React.FC<Props> = (props) => {
                     </button>
                 </div>
             </header>
-            {selectedExercise ? <CurrentExercise exercise={selectedExercise} player={player}/> : null}
+            {selectedExercise && player ? <CurrentExercise exercise={selectedExercise} player={player}/> : null}
             {props.loading ? <p>Loading... </p> :
                 props.error ? <p>Uh oh! {props.error}</p> :
                     props.exercises && !selectedExercise ?

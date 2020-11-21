@@ -40,7 +40,7 @@ type Mutation {
 
     playerLogin(name: String!): Player!
 
-    addVote(voteType: String!, ideaId: Int!, playerId: Int!): [Vote!]!
+    addVote(voteType: String!, ideaId: Int!, playerId: Int!): Idea!
     deleteVote(id: Int!): Vote!
 }
 

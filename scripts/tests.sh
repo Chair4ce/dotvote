@@ -13,11 +13,11 @@ function main {
         ;;
         unit)
             yarnBuild
-            unitTests
+#            unitTests
         ;;
         *)
             yarnBuild
-            unitTests
+#            unitTests
             jarBuild
 #            acceptanceTests
         ;;
